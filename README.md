@@ -1,5 +1,4 @@
-# Cosmetics-Ecommerce
-# Angular Makeup E-commerce Project
+# Angular Cosmetics E-commerce Project
 
 This project is an e-commerce platform for Cosmetics products built with Angular as part of the ITI 9-Month postgraduate program
 Angular course assessment.
