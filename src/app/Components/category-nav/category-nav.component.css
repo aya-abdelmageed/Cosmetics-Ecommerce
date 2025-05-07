@@ -1,0 +1,90 @@
+.navbar-container {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar-header {
+     
+    margin-bottom: 20px;
+}
+
+.must-have {
+    font-size: 14px;
+    color: #666;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.makeup-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.category {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        cursor: pointer;
+        text-align: center;
+        border-bottom: 2px solid transparent;/* Inactive state */
+        transition: border-color 0.3s ease;
+}
+
+.category-image {
+width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* This creates the circle */
+    object-fit: cover;
+    /* Ensures images fill the circle properly */
+    border: 2px solid #fff;
+    /* Optional: adds a white border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Optional: adds subtle shadow */
+    transition: all 0.3s ease;
+    /* Smooth hover effects */
+}
+
+.category-image:hover {
+    transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-name {
+    margin-top: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #333;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px #ff69b4;
+    }
+
+    50% {
+        box-shadow: 0 0 20px #ff69b4;
+    }
+
+    100% {
+        box-shadow: 0 0 5px #ff69b4;
+    }
+}
+
+.category.active .category-image {
+    animation: pulse 2s infinite;
+}
