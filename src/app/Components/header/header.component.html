@@ -1,1 +1,118 @@
-<p>header works!</p>
+<!-- Navbar Component -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm mb-lg-4">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo.png" alt="Logo" width="30" height="30" class="me-2">
+      <span><strong>Gil</strong><span class="text-danger">kan.</span></span>
+    </a>
+
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Main tabs centered -->
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link px-3 px-md-4 py-2 py-md-3">
+            HOME
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/shop"
+            routerLinkActive="active"
+            class="nav-link px-3 px-md-4 py-2 py-md-3">
+            Shop
+          </a>
+        </li>
+           <!-- Admin links -->
+           <li class="nav-item" *ngIf="isAdmin()">
+            <a
+              routerLink="/admin/dashboard"
+              routerLinkActive="active"
+              class="nav-link px-3 px-md-4 py-2 py-md-3">
+              DASHBOARD
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a
+              routerLink="/admin/add-product"
+              routerLinkActive="active"
+              class="nav-link px-3 px-md-4 py-2 py-md-3">
+              ADD PRODUCT
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a
+              routerLink="/admin/manage-products"
+              routerLinkActive="active"
+              class="nav-link px-3 px-md-4 py-2 py-md-3">
+              MANAGE PRODUCTS
+            </a>
+          </li>
+      </ul>
+
+      <!-- Icons, auth and admin on the right -->
+      <ul class="navbar-nav ms-auto align-items-center">
+        <!-- Wishlist icon for users -->
+        <li class="nav-item me-3" *ngIf="isUser()">
+          <a
+            routerLink="/wishlist"
+            routerLinkActive="active"
+            class="nav-link px-2 py-2">
+            <i class="bi bi-heart"></i>
+          </a>
+        </li>
+        <!-- Cart icon for users -->
+        <li class="nav-item me-3" *ngIf="isUser()">
+          <a
+            routerLink="/cart"
+            routerLinkActive="active"
+            class="nav-link px-2 py-2">
+            <i class="bi bi-cart"></i>
+          </a>
+        </li>
+        <!-- Login/Register for guests -->
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            class="nav-link px-3 px-md-4 py-2 py-md-3">
+            LOGIN
+          </a>
+        </li>
+        <li class="nav-item ms-2" *ngIf="!isLoggedIn()">
+          <a
+            routerLink="/register"
+            routerLinkActive="active"
+            class="nav-link px-3 px-md-4 py-2 py-md-3">
+            REGISTER
+          </a>
+        </li>
+        <!-- Logout for logged-in users -->
+        <li class="nav-item ms-2" *ngIf="isLoggedIn()">
+          <a
+            (click)="logout()"
+            class="nav-link px-3 px-md-4 py-2 py-md-3">
+            LOGOUT
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

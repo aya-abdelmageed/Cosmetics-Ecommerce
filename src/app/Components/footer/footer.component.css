@@ -1,0 +1,31 @@
+footer {
+    background: #fff4f4 !important;
+    bottom: 0px !important;
+    position: relative;
+
+}
+
+.social-links .bi {
+    color: #1d1d35;
+    transition: color 0.2s ease-in-out;
+}
+
+.social-links .bi:hover {
+    color: #D49696 !important;
+}
+
+.footer-menu-002 a:hover {
+    color: #D49696 !important;
+
+}
+
+.footer-menu .item-anchor {
+    color: #1d1d35;
+    ;
+    transition: color 0.2s ease-in-out;
+    text-decoration: none !important;
+}
+
+.footer-menu .item-anchor:hover {
+    color: #D49696 !important;
+}

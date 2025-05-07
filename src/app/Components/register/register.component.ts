@@ -13,23 +13,20 @@ import { FormsModule } from '@angular/forms';
 export class RegisterComponent {
   user = {
     name: '',
+    age: null,
     email: '',
+    phone: '',
+    img: '',
     password: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   onRegister() {
-    this.authService.register(this.user).subscribe({
-      next: (res: any) => {
-        // ممكن ترسلي التوكن لو حابة، أو تنقليه لصفحة تسجيل الدخول
-        alert('تم التسجيل بنجاح');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        alert('حدث خطأ أثناء التسجيل');
-        console.error(err);
-      }
+    this.user.img = '/Images/profile-avatar.jpg';
+    this.auth.register(this.user).subscribe(() => {
+      alert('Registration successful!');
+      this.router.navigate(['/login']);
     });
   }
 }
