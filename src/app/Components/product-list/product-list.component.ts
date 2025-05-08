@@ -194,6 +194,7 @@ export class ProductListComponent implements OnInit {
    filterByCategory(types: string[]): void {
     this.selectedCategoryTypes = types;
     this.applyFilters();
+    console.log("filter applied")
   }
   resetFilters(): void {
     this.pendingFilters = {

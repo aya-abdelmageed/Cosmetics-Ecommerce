@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from "./Components/footer/footer.component";
 import { CategorySliderComponent } from "./Components/category-slider/category-slider.component";
+import { HomeComponent} from "./Components/home/home.component";
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule, HeaderComponent, FooterComponent,CategorySliderComponent] ,
+  imports: [CommonModule, RouterOutlet, RouterModule, HeaderComponent, FooterComponent,HomeComponent] ,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
