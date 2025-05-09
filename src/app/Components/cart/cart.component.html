@@ -1,2 +1,15 @@
-<p>cart works!</p>
-<iframe src="https://media.istockphoto.com/id/1209730692/video/rotation-of-cosmetic-and-make-up-brush-collection-on-pink-background.mp4?s=mp4-640x640-is&k=20&c=rRGaQY4fMhqvVEX8OOA4k3J5mN82a3ggFLIiYdhVmm8="></iframe>
+<div class="container-fluid">
+    <app-header></app-header>
+    <section id="cart" class="my-lg-7 my-5">
+        <div class="container-lg">
+          <div class="row g-md-5">
+            <div class="col-md-8 pe-md-5">
+              <app-cart-item [user]="useremail"></app-cart-item>
+            </div>
+            <div class="col-md-4 mt-5">
+              <app-cart-summary></app-cart-summary>
+            </div>
+          </div>
+        </div>
+      </section>
+</div>

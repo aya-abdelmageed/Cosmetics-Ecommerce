@@ -18,7 +18,10 @@
         </div>
     </div>
     <div class="category">
-        <app-category-slider></app-category-slider> 
+        <div *ngIf="!router.url.includes('/Shop')">
+            <app-category-slider (categorySelected)="onCategorySelected($event)">
+            </app-category-slider>
+        </div>
     </div>
 </body>
 

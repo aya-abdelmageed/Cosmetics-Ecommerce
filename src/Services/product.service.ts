@@ -17,4 +17,9 @@ export class ProductsService {
      map(products => products.filter(p => Number(p.price) !== 0))
 );
   }
+
+  getProductById(id : string): Observable<Product>{
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
 }
+

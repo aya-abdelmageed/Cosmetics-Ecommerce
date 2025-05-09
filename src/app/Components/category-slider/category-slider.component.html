@@ -8,7 +8,8 @@
     <div class="slider" #slider>
       <div *ngFor="let category of sliderCategories" 
            class="slide"
-           (click)="selectCategory(category.types)">
+           [class.active]="activeCategory === category.name"
+           (click)="selectCategory(category.types, category.name)">
         <img [src]="category.image" 
              [alt]="category.name"
              class="slider-image">

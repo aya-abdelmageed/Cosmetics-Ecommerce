@@ -116,3 +116,11 @@
     font-size: 1.5rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
+.slide.active {
+    border: 2px solid #333;
+    transform: translateY(-5px);
+}
+
+.slide.active .slider-image {
+    filter: brightness(1);
+} 

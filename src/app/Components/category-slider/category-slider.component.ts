@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 export class CategorySliderComponent {
 @Output() categorySelected = new EventEmitter<string[]>();
 @ViewChild('slider') slider!: ElementRef<HTMLElement>;
+activeCategory: string | null = null;
 
   scrollLeft() {
     this.slider.nativeElement.scrollBy({
@@ -33,7 +34,8 @@ export class CategorySliderComponent {
     { name: 'Nails', types: ['nail_polish'], image: 'Images/nails.jpg'  }
   ];
 
-  selectCategory(types: string[]) {
-   this.categorySelected.emit(types);
+  selectCategory(types: string[], categoryName: string) {
+   this.activeCategory = this.activeCategory === categoryName ? null : categoryName;
+    this.categorySelected.emit(this.activeCategory ? types : []);
   }
 }
