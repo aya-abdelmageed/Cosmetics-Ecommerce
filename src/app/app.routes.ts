@@ -8,10 +8,11 @@ import { AddProductComponent } from './Components/add-product/add-product.compon
 import { AdminGuard } from '../Guard/guards/admin.guard';
 import { NotAuthorizedComponent } from './Components/not-authorized/not-authorized.component';
 
+
 export const routes: Routes = [
    //{ path: '', component: HeaderComponent },
-    { path: 'login', component: SigninComponent },
-    { path: 'register', component: RegisterComponent },
+   { path: 'login', component: SigninComponent },
+   { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
    { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    { path: 'not-authorized', component: NotAuthorizedComponent }

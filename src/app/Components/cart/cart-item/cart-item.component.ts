@@ -1,0 +1,47 @@
+import { Component, Input, input } from '@angular/core';
+import { CartService } from '../../../../Services/cart.service';
+import { Cart } from '../../../../models/cart.model';
+import { ProductService } from '../../../../Services/product.service';
+import { forkJoin, map } from 'rxjs';
+import { CommonModule} from '@angular/common';
+
+
+@Component({
+  selector: 'app-cart-item',
+  imports: [CommonModule],
+  templateUrl: './cart-item.component.html',
+  styleUrl: './cart-item.component.css'
+})
+export class CartItemComponent {
+  constructor(private cartService : CartService, private productService : ProductService) { }
+  
+  @Input() user:string | null = null;
+
+  Items$: any;
+
+  ngOnInit() {
+    this.Items$ = this.cartService.cartItemsWithTotal$;
+  }
+  increment(itemId : string){
+    if (this.user) {
+      this.cartService.updateQuantity(itemId, 'increment').subscribe(() => 
+      console.log('incremented'));
+    }
+  }
+
+  decrement(itemId : string){
+    if (this.user) {
+      this.cartService.updateQuantity(itemId, 'decrement').subscribe(() => 
+      console.log('decremented'));
+    }
+  }
+  remove(itemId : string){
+    if(this.user){
+      this.cartService.removeFromCart(itemId).subscribe(() =>{
+        alert("Item removed from cart");
+        console.log("removed");
+      })
+    }
+  }
+  
+}
