@@ -119,6 +119,24 @@
       "phone": "428322",
       "img": "/Images/profile-avatar.jpg",
       "password": "123"
+    },
+    {
+      "id": "c770",
+      "name": "walid",
+      "age": 22,
+      "email": "walid@gmail.com",
+      "phone": "",
+      "img": "/Images/profile-avatar.jpg",
+      "password": ""
+    },
+    {
+      "id": "d461",
+      "name": "walid",
+      "age": 22,
+      "email": "walid@gmail.com",
+      "phone": "",
+      "img": "/Images/profile-avatar.jpg",
+      "password": ""
     }
   ],
   "products": [

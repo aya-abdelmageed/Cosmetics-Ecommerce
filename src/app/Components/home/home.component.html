@@ -1,6 +1,28 @@
-<!-- home.component.html -->
- <div *ngIf="!router.url.includes('/Shop')"> 
-<app-category-slider 
-  (categorySelected)="onCategorySelected($event)">
-</app-category-slider> 
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="vediocontianer" data-aos="fade-up">
+        <div class="slider" (mouseenter)="pauseSlider()" (mouseleave)="resumeSlider()">
+            <video #videoPlayer [src]="videos[currentVideoIndex]" autoplay muted loop class="video-slide"></video>
+        </div>
+        <div class="dots">
+            <span *ngFor="let video of videos; let i = index" [class.active]="i === currentVideoIndex"
+                (click)="goToVideo(i)"></span>
+        </div>
+    </div>
+    <div class="category">
+        <div *ngIf="!router.url.includes('/Shop')">
+            <app-category-slider (categorySelected)="onCategorySelected($event)">
+            </app-category-slider>
+        </div>
+    </div>
+</body>
+
+</html>
