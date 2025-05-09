@@ -1,7 +1,6 @@
 import { Component, Input, input } from '@angular/core';
 import { CartService } from '../../../../Services/cart.service';
 import { Cart } from '../../../../models/cart.model';
-import { ProductService } from '../../../../Services/product.service';
 import { forkJoin, map } from 'rxjs';
 import { CommonModule} from '@angular/common';
 
@@ -13,7 +12,7 @@ import { CommonModule} from '@angular/common';
   styleUrl: './cart-item.component.css'
 })
 export class CartItemComponent {
-  constructor(private cartService : CartService, private productService : ProductService) { }
+  constructor(private cartService : CartService) { }
   
   @Input() user:string | null = null;
 

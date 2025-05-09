@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, map, BehaviorSubject, forkJoin, of, take } from 'rxjs';
 import { Cart, CartProduct } from '../models/cart.model'; // adjust path as needed
-import { ProductService } from './product.service';
+import { ProductsService } from './product.service';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class CartService {
   //make the cart total observable as a public observable stream.
   public cartTotal$ = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient, private auth:AuthService, private productService : ProductService) {
+  constructor(private http: HttpClient, private auth:AuthService, private productService : ProductsService) {
     //this will keep track of the user email and i need to handle the 
     //unsubscribing of the observable stream
     //so i will ensure the subSCRIPTIONS HAPPENES only once and automatically completes
@@ -80,7 +80,7 @@ export class CartService {
        this.getCartByUser().subscribe((cart) => {
         if(cart){
           const productObservables = cart.products.map(i => 
-            this.productService.getProduct(i.productId).pipe(
+            this.productService.getProductById(i.productId).pipe(
               map(product => ({
                 ...product,
                 quantity: i.quantity,
@@ -243,7 +243,7 @@ export class CartService {
         if (!cart || cart.products.length === 0) return of(0); // No products in cart
 
         const productObservables = cart.products.map(product => 
-          this.productService.getProduct(product.productId).pipe(
+          this.productService.getProductById(product.productId).pipe(
             switchMap(p => [parseFloat(p.price) * product.quantity])
           )
         );

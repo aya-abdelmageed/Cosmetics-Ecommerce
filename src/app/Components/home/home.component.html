@@ -1,0 +1,6 @@
+<!-- home.component.html -->
+ <div *ngIf="!router.url.includes('/Shop')"> 
+<app-category-slider 
+  (categorySelected)="onCategorySelected($event)">
+</app-category-slider> 
+</div>
