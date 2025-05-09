@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import * as AOS from 'aos';
+import { CategorySliderComponent } from '../category-slider/category-slider.component';
 @Component({
   selector: 'app-home',
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule,CommonModule ,CategorySliderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
