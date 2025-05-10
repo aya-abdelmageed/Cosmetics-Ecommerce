@@ -7,6 +7,7 @@ import { AuthGuard } from '../Guard/guards/auth.guard';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { AdminGuard } from '../Guard/guards/admin.guard';
 import { NotAuthorizedComponent } from './Components/not-authorized/not-authorized.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 export const routes: Routes = [
    //{ path: '', component: HeaderComponent },
@@ -14,8 +15,8 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
    { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
-   { path: 'not-authorized', component: NotAuthorizedComponent }
-
+   { path: 'not-authorized', component: NotAuthorizedComponent },
+   {path: "product",component:ProductDetailsComponent}
   
     
   ];

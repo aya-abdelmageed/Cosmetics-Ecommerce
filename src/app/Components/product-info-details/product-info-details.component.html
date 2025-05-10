@@ -1,0 +1,34 @@
+<div class="product-details-container container d-flex">
+  <!-- Left Column -->
+  <div class="me-4">
+    <p>DETAILS</p>
+  </div>
+    <div class="me-4">
+      <p>HOW TO USE</p>
+    </div>  
+    <div class="me-4">
+        <p>SHIPPING & RETURN</p>
+    </div>
+    <div class="me-4">
+      <p>REVIEWS</p>
+    </div>
+    <div class="me-4">
+      <p>Product Description</p>
+    </div>
+</div>
+<hr>
+<!-- product-related -->
+
+<h3>Related Products (Brand: {{ currentProduct.brand }})</h3>
+
+<ngx-slick-carousel class="carousel" [config]="slideConfig">
+  <div ngxSlickItem *ngFor="let product of relatedProducts" class="slide">
+    <div class="card">
+      <img [src]="product.image_link" class="card-img-top" alt="{{ product.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.price | currency }}</p>
+      </div>
+    </div>
+  </div>
+</ngx-slick-carousel>
