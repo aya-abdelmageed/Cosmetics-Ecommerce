@@ -74,7 +74,7 @@ export class CartService {
     }
   }
 
-  //helper to pdate the cart items with total
+  //helper to update the cart items with total
   private updateCartItemsWithTotal():void{
     if(this.useremail){
        this.getCartByUser().subscribe((cart) => {

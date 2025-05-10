@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../../Services/cart.service';
 import { switchMap } from 'rxjs';
+import { WishlistService } from '../../../Services/wishlist.service';
 
 @Component({
   selector: 'app-register',
@@ -22,14 +23,15 @@ export class RegisterComponent {
     password: ''
   };
 
-  constructor(private auth: AuthService, private cartservice : CartService, private router: Router) {}
+  constructor(private auth: AuthService, private cartservice : CartService, private wishService : WishlistService, private router: Router) {}
 
 
 onRegister() {
   this.user.img = '/Images/profile-avatar.jpg';
   
   this.auth.register(this.user).pipe(
-    switchMap(() => this.cartservice.createCart(this.user.email))
+    switchMap(() => this.cartservice.createCart(this.user.email)),
+    switchMap(() => this.wishService.createWishlist(this.user.email))
   ).subscribe(() => {
     alert('Registration successful!');
     this.router.navigate(['/login']);
