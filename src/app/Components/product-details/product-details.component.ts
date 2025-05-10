@@ -1,68 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ProductInfoDetailsComponent } from "../product-info-details/product-info-details.component";
+import { ProductDetailsService } from '../../../Services/product-details.service';
+import { ReviewsComponent } from "../reviews/reviews.component";
+import {review} from "../../../models/review.model"
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-details',
-  imports: [CommonModule, ProductInfoDetailsComponent],
+  imports: [CommonModule, ProductInfoDetailsComponent, ReviewsComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
-  quantity = 1
-    product : any =  {
-      "id": "1047",
-      "brand": "colourpop",
-      "name": "Blotted Lip",
-      "price": "5.5",
-      "price_sign": "$",
-      "currency": "CAD",
-      "image_link": "https://cdn.shopify.com/s/files/1/1338/0845/products/brain-freeze_a_800x1200.jpg?v=1502255076",
-      "product_link": "https://colourpop.com/collections/lippie-stix?filter=blotted-lip",
-      "website_link": "https://colourpop.com",
-      "description": "Blotted Lip Sheer matte lipstick that creates the perfect popsicle pout! Formula is lightweight, matte and buildable for light to medium coverage.",
-      "rating": null,
-      "category": "lipstick",
-      "product_type": "lipstick",
-      "tag_list": [
-        "cruelty free",
-        "Vegan"
-      ],
-      "created_at": "2018-07-08T22:01:20.178Z",
-      "updated_at": "2018-07-09T00:53:23.287Z",
-      "product_api_url": "http://makeup-api.herokuapp.com/api/v1/products/1047.json",
-      "api_featured_image": "//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/047/original/open-uri20180708-4-e7idod?1531087336",
-      "product_colors": [
-        {
-          "hex_value": "#b72227",
-          "colour_name": "Bee's Knees"
-        },
-        {
-          "hex_value": "#BB656B",
-          "colour_name": "Brain Freeze"
-        },
-        {
-          "hex_value": "#8E4140",
-          "colour_name": "Drip"
-        },
-        {
-          "hex_value": "#A12A33",
-          "colour_name": "On a Stick"
-        },
-        {
-          "hex_value": "#904550",
-          "colour_name": "Ice Cube"
-        },
-        {
-          "hex_value": "#452222",
-          "colour_name": "Lolly"
-        },
-        {
-          "hex_value": "#7C3F35",
-          "colour_name": "Candyfloss"
-        }
-      ]
-    }
+  constructor(private productDetails: ProductDetailsService,private http: HttpClient){}
+    quantity = 1
+    product : any 
+    productInfo: any;
     increaseQty() {
       this.quantity++;
     }
@@ -70,4 +25,28 @@ export class ProductDetailsComponent {
     decreaseQty() {
       if (this.quantity > 1) this.quantity--;
     }
+    ngOnInit() {
+       this.product = history.state.product;
+       this.productInfo = this.productDetails.getProductDetails();
+  }
+  apiUrl : string = 'http://localhost:3000/reviews'
+ handleRatingSubmission(event: { rating: number; comment: string }): void {
+  const newReview: any = {
+    product_id: this.product.id,
+    user_id: 'user_123',
+    username: 'John Doe',
+    comment: event.comment,
+    stars: event.rating
+  };
+
+  this.http.post<review>(this.apiUrl, newReview).subscribe(
+    (res) => {
+      console.log('Review added:', res);
+    },
+    (err) => {
+      console.error('Error submitting review:', err);
+    }
+  );
+}
+
   }

@@ -26,7 +26,16 @@
               Price: <span class="text-dark">{{ product.price_sign }}{{ product.price }}</span>
             </h4>
           </div>
-          
+
+       <!-- Color Swatches -->
+      <div class="mb-3 d-flex flex-wrap gap-2 align-items-center">
+        <span *ngFor="let color of product.product_colors"
+              [title]="color.colour_name"
+              class="rounded-circle border color-swatch"
+              [style.backgroundColor]="color.hex_value"
+              style="width: 30px; height: 30px; display: inline-block; cursor: pointer;">
+        </span>
+
         <!-- Quantity & Add to Bag -->
         <div class="d-flex align-items-center mb-3">
           <div class="input-group me-3" style="width: 120px;">
@@ -42,16 +51,7 @@
             <i class="fas fa-heart me-2"></i>
           </a>
         </div>
-    
-       <!-- Color Swatches -->
-      <div class="mb-3 d-flex flex-wrap gap-2 align-items-center">
-        <span *ngFor="let color of product.product_colors"
-              [title]="color.colour_name"
-              class="rounded-circle border color-swatch"
-              [style.backgroundColor]="color.hex_value"
-              style="width: 30px; height: 30px; display: inline-block; cursor: pointer;">
-        </span>
-        
+      
       </div>
 
       <!-- Tags -->
@@ -63,5 +63,7 @@
       </div>
     </div>
   </div>
-  <app-product-info-details></app-product-info-details>
-  
+  <app-product-info-details [product]="product" [productInfo]="productInfo"></app-product-info-details>
+  <app-reviews
+  (ratingSubmitted)="handleRatingSubmission($event)">
+  </app-reviews>
