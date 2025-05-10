@@ -1,0 +1,141 @@
+<!-- product-list.component.html -->
+  <!-- Filter Sidebar -->
+   <div class="product-container"> 
+  <aside class="filter-sidebar">
+    <div class="filter-header">
+      <h3>Filters</h3>
+      <button class="reset-btn" (click)="resetFilters()">Reset All</button>
+    </div>
+
+    <!-- Price Range Filter -->
+    <div class="filter-section">
+      <h4>Price Range</h4>
+      <div class="price-range">
+        <span>${{pendingFilters.priceRange.min}}</span>
+        <input type="range" [(ngModel)]="pendingFilters.priceRange.max" 
+               [min]="0" [max]="30" [step]="5">
+        <span>${{pendingFilters.priceRange.max}}</span>
+      </div>
+    </div>
+
+    <!-- Brand Filter -->
+    <div class="filter-section">
+      <h4>Brands</h4>
+      <div class="filter-options">
+        <div *ngFor="let brand of brands" class="filter-option">
+          <input type="checkbox" 
+                 [id]="'brand-' + brand" 
+                 [checked]="pendingFilters.selectedBrands.includes(brand)"
+                 (change)="toggleBrand(brand)">
+          <label [for]="'brand-' + brand">{{ brand | titlecase }}</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags Filter -->
+    <div class="filter-section">
+      <h4>Tags</h4>
+      <div class="filter-options">
+        <div *ngFor="let tag of tags" class="filter-option">
+          <input type="checkbox" 
+                 [id]="'tag-' + tag" 
+                 [checked]="pendingFilters.selectedTags.includes(tag)"
+                 (change)="toggleTag(tag)">
+          <label [for]="'tag-' + tag">{{ tag }}</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apply Button -->
+    <div class="filter-actions">
+      <button (click)="applyFilters()" class="apply-btn">Apply Filters</button>
+    </div>
+  </aside>
+<div class="product-list">
+  <div *ngIf="isLoading" class="loading">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading products...</div>
+</div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+    <button (click)="loadProducts()">Retry</button>
+  </div>
+<div class="results-count" *ngIf="!isLoading">
+      We found {{ filteredProducts.length }} items for you!
+    </div>
+  <div *ngIf="!isLoading && paginatedProducts.length === 0" class="no-products">
+  No products found.
+</div>
+
+  <div class="product-grid">
+    <div *ngFor="let product of paginatedProducts">
+      <div class="product-card">
+        <!-- Wishlist Heart Icon (Top Right) -->
+
+        <!-- Product Image -->
+        <div class="image-container">
+          <button class="wishlist-btn">
+            <span class="heart-icon">♥</span>
+          </button>
+
+          <img
+            [src]="product.api_featured_image"
+            [alt]="product.name"
+            class="product-image"
+          />
+          <button class="quick-view-btn">
+            <i class="fi fi-rs-eye"></i> Quick View
+          </button>
+        </div>
+        <!-- Product Info -->
+        <div class="product-info">
+          <h3 class="brand">{{ product.brand }}</h3>
+          <h2 class="name">{{ product.name }}</h2>
+          <h3 class="name">{{ product.tag_list.join("-") }}</h3>
+          <p class="price">
+            From {{ product.price_sign || "£" }}{{ product.price }}
+          </p>
+
+          <!-- Add to Bag Button -->
+          <button class="add-to-bag">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pagination Controls -->
+  <div *ngIf="!isLoading && filteredProducts.length > 0" class="pagination">
+    <button (click)="changePage(1)" [disabled]="currentPage === 1">
+      First
+    </button>
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+
+    <span
+      *ngFor="let page of getPageNumbers()"
+      (click)="changePage(page)"
+      [class.active]="page === currentPage"
+      class="page-number"
+    >
+      {{ page }}
+    </span>
+
+    <button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages()"
+    >
+      Next
+    </button>
+    <button
+      (click)="changePage(totalPages())"
+      [disabled]="currentPage === totalPages()"
+    >
+      Last
+    </button>
+  </div>
+</div>
+</div>

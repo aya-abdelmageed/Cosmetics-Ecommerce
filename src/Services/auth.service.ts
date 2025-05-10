@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
@@ -12,8 +13,15 @@ export class AuthService {
   private baseUrl = 'http://localhost:3000/users';
   private adminEmail = 'rehabmansi668@gmail.com';
   private currentUserEmail: string | null = null;
+  auth$ = new BehaviorSubject<string | null>(null);
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    //if refresh happens, check if user is logged in and update the auth$
+    const email = localStorage.getItem('userEmail');
+    if (email) {
+      this.auth$.next(email);
+    }
+   }
 
   register(userData: any) {
     return this.http.post(this.baseUrl,userData);
@@ -25,6 +33,7 @@ export class AuthService {
         if (users.length > 0) {
           this.currentUserEmail = email;
           localStorage.setItem('userEmail', email);
+          this.auth$.next(email);
           return true;
         } else {
           return false;
@@ -36,6 +45,7 @@ export class AuthService {
   logout() {
     this.currentUserEmail = null;
     localStorage.removeItem('userEmail');
+    this.auth$.next(null);
   }
 
   isLoggedIn(): boolean {
