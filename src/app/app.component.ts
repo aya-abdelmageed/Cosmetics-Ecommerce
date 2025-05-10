@@ -7,7 +7,7 @@ import { CategorySliderComponent } from "./Components/category-slider/category-s
 import { HomeComponent} from "./Components/home/home.component";
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule, HeaderComponent, FooterComponent,HomeComponent] ,
+  imports: [CommonModule, RouterOutlet, RouterModule, HeaderComponent, FooterComponent] ,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

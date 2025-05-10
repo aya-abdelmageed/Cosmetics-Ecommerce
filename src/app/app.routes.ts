@@ -10,8 +10,7 @@ import { NotAuthorizedComponent } from './Components/not-authorized/not-authoriz
 import { ShopComponent } from './Components/Shop/Shop.component';
 import { HomeComponent } from './Components/home/home.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
-
-
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 export const routes: Routes = [
    //{ path: '', component: HeaderComponent },
    { path: 'login', component: SigninComponent },
@@ -20,11 +19,10 @@ export const routes: Routes = [
    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard]},
    { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    { path: 'not-authorized', component: NotAuthorizedComponent },
-   { path: 'Shop', component: ShopComponent },
+   {path: "product",component:ProductDetailsComponent},
+
+    { path: 'Shop', component: ShopComponent },
    { path: '', component: HomeComponent }
-
-
-  
     
   ];
   
