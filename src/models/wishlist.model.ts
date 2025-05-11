@@ -1,5 +1,5 @@
 export interface WishlistModel {
     id?: string;
-    userId: string;
+    user: string;
     productIds: string[];
 }
