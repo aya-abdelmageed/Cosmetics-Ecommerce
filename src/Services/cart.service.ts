@@ -107,11 +107,11 @@ export class CartService {
 
   // Create a cart for a new user called from the register component
   createCart(_user: string): Observable<Cart> {
-    const cartData: Omit<Cart, 'id'> = {
+    const cartData = {
       user: _user,
       products: []
     };
-    return this.http.post<Cart>(this.cartUrl, cartData);
+    return this.http.post<Cart>(`${this.cartUrl}`, cartData);
   }
 
   // Get cart by user email

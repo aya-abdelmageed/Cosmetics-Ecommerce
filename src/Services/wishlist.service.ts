@@ -82,11 +82,11 @@ export class WishlistService {
   //make a wishlist for user which don't have one
 
   createWishlist(_user: string): Observable<WishlistModel>{
-    const wishlist : Omit<WishlistModel, 'id'> = {
+    const wishlist  = {
       user : _user,
       productIds : []
     };
-    return this.http.post<WishlistModel>(this.baseUrl,wishlist);
+    return this.http.post<WishlistModel>(`${this.baseUrl}`,wishlist);
   }
 
 

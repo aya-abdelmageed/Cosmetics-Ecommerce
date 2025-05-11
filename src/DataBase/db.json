@@ -164,6 +164,24 @@
       "phone": "",
       "img": "/Images/profile-avatar.jpg",
       "password": "123"
+    },
+    {
+      "id": "3995",
+      "name": "Aya",
+      "age": null,
+      "email": "aya@gmail.com",
+      "phone": "",
+      "img": "/Images/profile-avatar.jpg",
+      "password": "123"
+    },
+    {
+      "id": "98c0",
+      "name": "test",
+      "age": null,
+      "email": "test@gmail.com",
+      "phone": "01061044092",
+      "img": "/Images/profile-avatar.jpg",
+      "password": "123"
     }
   ],
   "products": [
@@ -57140,9 +57158,17 @@
     }
   ],
   "carts": [
-    
+    {
+      "id": "5451",
+      "user": "test@gmail.com",
+      "products": []
+    }
   ],
   "wishlists": [
-    
+    {
+      "id": "cc4f",
+      "user": "test@gmail.com",
+      "productIds": []
+    }
   ]
 }
