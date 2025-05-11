@@ -16,6 +16,9 @@ export class WishlistService {
   //make a wishItems behavioral subject
   public wishItems$ = new BehaviorSubject<Product[]>([]);
 
+  //get the current wish items
+  public wishlist$ = new BehaviorSubject<number[]>([]);
+
   
   //make the derived wish item count observable as a public observable stream.
 
@@ -59,6 +62,23 @@ export class WishlistService {
       );
   }
 
+
+  //get item list 
+  updateWishlist() : void{
+    if(this.useremail)
+      this.getWishlistByUser().subscribe(wish =>
+        {
+          if(!wish ||  wish.productIds.length === 0)
+          {
+            this.wishlist$.next([]);
+          }
+         else{
+            this.wishlist$.next(wish.productIds);
+
+         }
+        });
+  }
+
   //make a wishlist for user which don't have one
 
   createWishlist(_user: string): Observable<WishlistModel>{
@@ -84,7 +104,7 @@ export class WishlistService {
   }
 
   //remove from Wishlist
-  removeFromWishlist(productId : string) : Observable<WishlistModel>{
+  removeFromWishlist(productId : number) : Observable<WishlistModel>{
     return this.getWishlistByUser().pipe(
       switchMap(wish => {
         if(!wish)
@@ -95,6 +115,7 @@ export class WishlistService {
         return this.http.put<WishlistModel>(`${this.baseUrl}/${wish.id}`, wish).pipe(
           map(newWish => {
             this.updateWishItems();
+            this.updateWishlist();
             return newWish;
           })
         );
@@ -103,26 +124,28 @@ export class WishlistService {
   }
 
   //add to wishlist
-  addToWishlist(productId : string): Observable<WishlistModel>{
+  addToWishlist(productId : number): Observable<WishlistModel>{
     if(!this.useremail)
       return of();
     return this.getWishlistByUser().pipe(
       switchMap(wish => {
         if(!wish)
           return of();
-        const index = wish.productIds.find(x => x == productId);
+        const index = wish.productIds.indexOf(productId);
 
-        if(index !== undefined){
+        if(index === -1){
           wish.productIds.push(productId);
+          
         }
         else{
-          wish.productIds.filter(x => x !== productId);
+          wish.productIds.splice(index, 1);
         }
 
         return this.http.put<WishlistModel>(`${this.baseUrl}/${wish.id}`, wish).pipe(
           map(updatewish => {
             //update Items.
             this.updateWishItems();
+            this.updateWishlist();
             return updatewish;
           })
         );

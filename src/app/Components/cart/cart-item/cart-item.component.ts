@@ -21,20 +21,20 @@ export class CartItemComponent {
   ngOnInit() {
     this.Items$ = this.cartService.cartItemsWithTotal$;
   }
-  increment(itemId : string){
+  increment(itemId : number){
     if (this.user) {
       this.cartService.updateQuantity(itemId, 'increment').subscribe(() => 
       console.log('incremented'));
     }
   }
 
-  decrement(itemId : string){
+  decrement(itemId : number){
     if (this.user) {
       this.cartService.updateQuantity(itemId, 'decrement').subscribe(() => 
       console.log('decremented'));
     }
   }
-  remove(itemId : string){
+  remove(itemId : number){
     if(this.user){
       this.cartService.removeFromCart(itemId).subscribe(() =>{
         alert("Item removed from cart");

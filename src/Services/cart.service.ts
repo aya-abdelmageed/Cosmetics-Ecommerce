@@ -125,7 +125,7 @@ export class CartService {
   }
 
   // Add product to cart
-  addToCart(productId: string): Observable<Cart> {
+  addToCart(productId: number): Observable<Cart> {
     if(!this.useremail)
       throw new Error('User email not found in local storage');
     return this.getCartByUser().pipe(
@@ -153,7 +153,7 @@ export class CartService {
   }
 
   // Remove product from cart
-  removeFromCart(productId: string): Observable<Cart> {
+  removeFromCart(productId: number): Observable<Cart> {
     return this.getCartByUser().pipe(
       switchMap(cart => {
         if (!cart) throw new Error('Cart not found');
@@ -171,7 +171,7 @@ export class CartService {
   }
 
   // Update quantity
-  updateQuantity(productId: string, action: 'increment' | 'decrement'): Observable<Cart> {
+  updateQuantity(productId: number, action: 'increment' | 'decrement'): Observable<Cart> {
     return this.getCartByUser().pipe(
       switchMap(cart => {
         if (!cart) throw new Error('Cart not found');

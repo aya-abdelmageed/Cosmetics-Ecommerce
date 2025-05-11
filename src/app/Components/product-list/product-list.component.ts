@@ -5,6 +5,9 @@ import { Product } from '../../../models/product.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from '../../../Services/cart.service';
+import { subscribeOn } from 'rxjs';
+import { WishlistService } from '../../../Services/wishlist.service';
 
 @Component({
   selector: 'app-product-list',
@@ -117,7 +120,41 @@ export class ProductListComponent implements OnInit {
   "water free"
   ];
 
-  constructor(private productsService: ProductsService,private router: Router) { }
+  wishlist :number[] = [];
+  constructor(private productsService: ProductsService,private router: Router, private cartServices : CartService, private wishService : WishlistService) {
+  
+    this.wishService.wishlist$.subscribe(items => {
+      this.wishlist = items || [];
+    });
+    
+  }
+
+  
+
+  addtobag(id:number):void{
+    this.cartServices.addToCart(id).subscribe(cart => {
+      if(cart)
+        alert("Added to cart Successfully")
+      else
+        console.log("can't add to cart")
+    }
+    );
+  }
+
+  isInWishlist(id:number){
+    return this.wishlist.includes(id);
+  }
+  addtowish(id:number):void{
+    this.wishService.addToWishlist(id).subscribe(wish =>{
+      if(wish){
+        alert("added successfully to your wishlist")
+      }
+      else
+        console.log("error at adding to wishlist")
+    }
+      
+    )
+  }
 
   ngOnInit(): void {
     this.loadProducts();
