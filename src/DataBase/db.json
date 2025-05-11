@@ -57110,6 +57110,14 @@
       "username": "John Doe",
       "comment": "S",
       "stars": 3
+    },
+    {
+      "id": "a9ec",
+      "product_id": "1047",
+      "user_id": "user_123",
+      "username": "John Doe",
+      "comment": "hhh",
+      "stars": 3
     }
   ],
   "carts": [
