@@ -24,7 +24,7 @@ h2 {
 }
 
 .star-rating span.filled {
-  color: #e89292;
+  color: gold;
 }
 
 textarea {
@@ -37,18 +37,19 @@ textarea {
 }
 
 button {
-  background-color: #ebb0eb95;
-  color: white;
+  background-color: #cccccc;
   border: none;
-  padding: 10px 20px;
+  padding: 20px 50px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   transition: background-color 0.2s;
+  border-radius: 40px;
 }
 
 button:hover {
-  background-color: y#928c8f;
+  background-color: #c4c1c1;
 }
 
 button:disabled {

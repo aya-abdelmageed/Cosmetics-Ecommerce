@@ -1,56 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import * as AOS from 'aos';
 import { CategorySliderComponent } from '../category-slider/category-slider.component';
+import { HomeReviewsComponent } from "../home-reviews/home-reviews.component";
+import { HomeImageComponent } from "../home-image/home-image.component";
+import { HeroSliderComponent } from "../hero-slider/hero-slider.component";
+import { BestProductsComponent } from "../best-products/best-products.component";
 @Component({
   selector: 'app-home',
-  imports: [RouterModule,CommonModule ,CategorySliderComponent],
+  imports: [RouterModule, CommonModule, CategorySliderComponent, HomeReviewsComponent, HomeImageComponent, HeroSliderComponent, BestProductsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
-  // section 2 
-  constructor(public router: Router) {}
+export class HomeComponent implements OnInit, AfterViewInit {
 
-  onCategorySelected(categories: string[]) {
-   // Convert array to comma-separated string for URL
-    const categoryParam = categories.join(',');
-    this.router.navigate(['/Shop'], { 
-      queryParams: { categories: categoryParam } 
-    });
-  }
-  videos: string[] = [
-    // 'https://media.istockphoto.com/id/906626750/video/4k-top-view-and-turning-of-cosmetic-and-brush-collection.jpg?s=640x640&k=20&c=8Fs1vp1AdOcreHTqXGfkn40wxdvd1VfvVeEnndejZ28=',
-    'https://media.istockphoto.com/id/1209730692/video/rotation-of-cosmetic-and-make-up-brush-collection-on-pink-background.mp4?s=mp4-640x640-is&k=20&c=rRGaQY4fMhqvVEX8OOA4k3J5mN82a3ggFLIiYdhVmm8=',
-     'Videos/3971844-hd_1920_1080_25fps.mp4'
-  ];
-  currentVideoIndex = 0;
-  intervalId: any;
 
-  ngOnInit(): void {
-    this.startSlider();
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
     AOS.init({
       duration: 1000,  
-      once: true})
+      once: true,      
+    });
   }
+  
 
-  startSlider() {
-    this.intervalId = setInterval(() => {
-      this.currentVideoIndex =
-        (this.currentVideoIndex + 1) % this.videos.length;
-    }, 3000); 
-  }
 
-  pauseSlider() {
-    clearInterval(this.intervalId);
-  }
+    // section 2 
+    constructor(public router: Router) {}
 
-  resumeSlider() {
-    this.startSlider();
-  }
-  goToVideo(index: number) {
-    this.currentVideoIndex = index;
-    this.pauseSlider();  
-  }
+    onCategorySelected(categories: string[]) {
+     // Convert array to comma-separated string for URL
+      const categoryParam = categories.join(',');
+      this.router.navigate(['/Shop'], { 
+        queryParams: { categories: categoryParam } 
+      });
+    }
 }

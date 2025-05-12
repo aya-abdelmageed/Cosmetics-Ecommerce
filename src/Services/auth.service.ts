@@ -25,6 +25,7 @@ export class AuthService {
 
   register(userData: any) {
     return this.http.post(this.baseUrl,userData);
+
   }
 
   login(email: string, password: string) {
@@ -56,5 +57,9 @@ export class AuthService {
     return localStorage.getItem('userEmail') === this.adminEmail;
   }  
   
+  
+  getAllUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
+  }
 }
 

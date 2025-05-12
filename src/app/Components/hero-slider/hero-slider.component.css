@@ -1,0 +1,65 @@
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .swiper-slide {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    /* opacity: 0.65; */
+  }
+  
+  .banner-content {
+    background-color: rgba(0, 0, 0, 0.3);  
+    padding: 2rem 0;
+    color: white;
+  }
+  
+  .section-title {
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  
+  .caption {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #f0f0f0;
+    margin-top: 1rem;
+  }
+  
+  .btn-swiper .btn {
+    border: 2px solid white;
+    padding: 0.75rem 2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-swiper .btn:hover {
+    background-color: #D49696 !important;
+    color: white !important;
+  }
+  
+  .swiper-pagination-slideshow {
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .swiper-pagination-bullet {
+    background: white;
+    opacity: 0.6;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+  

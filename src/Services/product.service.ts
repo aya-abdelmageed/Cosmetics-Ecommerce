@@ -18,8 +18,16 @@ export class ProductsService {
 );
   }
 
+  
+  getBestProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl).pipe(
+     map(products => products.filter(p => Number(p.rating) >=5))
+);
+  }
+
   getProductById(id : string): Observable<Product>{
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
+
 }
 

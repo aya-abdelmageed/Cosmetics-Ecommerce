@@ -2,68 +2,65 @@
   <div class="col-12 col-sm-8 col-md-6 col-lg-4">
     <div class="card auth-card p-4 shadow-sm">
       <h2 class="text-center mb-4">Register</h2>
-      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" novalidate>
+        <!-- Name -->
         <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            [(ngModel)]="user.name"
-            class="form-control"
-            placeholder="Enter your name"
-            required
-          />
+          <label>Name</label>
+          <input formControlName="name" type="text" class="form-control" />
+          <div *ngIf="(submitted || registerForm.get('name')?.touched) && registerForm.get('name')?.errors?.['required']" class="text-danger">
+            Name is required.
+          </div>
         </div>
+
+        <!-- Age -->
         <div class="mb-3">
-          <label for="age" class="form-label">Age</label>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            [(ngModel)]="user.age"
-            class="form-control"
-            placeholder="Enter your age"
-            required
-          />
+          <label>Age</label>
+          <input formControlName="age" type="number" class="form-control" />
+          <div *ngIf="(submitted || registerForm.get('age')?.touched) && registerForm.get('age')?.errors?.['invalidAge']" class="text-danger">
+            Age must be between 11 and 80 years.
+          </div>
         </div>
+
+        <!-- Email -->
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            [(ngModel)]="user.email"
-            class="form-control"
-            placeholder="Enter your email"
-            required
-          />
+          <label>Email</label>
+          <input formControlName="email" type="email" class="form-control" />
+          <div *ngIf="(submitted || registerForm.get('email')?.touched) && registerForm.get('email')?.errors?.['required']" class="text-danger">
+            Email is required.
+          </div>
+          <div *ngIf="(submitted || registerForm.get('email')?.touched) && registerForm.get('email')?.errors?.['email']" class="text-danger">
+            Invalid email format.
+          </div>
+          <div *ngIf="emailExists" class="text-danger">
+            Email already exists.
+          </div>
         </div>
+
+        <!-- Phone -->
         <div class="mb-3">
-          <label for="phone" class="form-label">Phone</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            [(ngModel)]="user.phone"
-            class="form-control"
-            placeholder="Enter your phone number"
-            required
-          />
+          <label>Phone</label>
+          <input formControlName="phone" type="text" class="form-control" />
+          <div *ngIf="(submitted || registerForm.get('phone')?.touched) && registerForm.get('phone')?.errors?.['invalidPhone']" class="text-danger">
+            Invalid phone number.
+          </div>
         </div>
+
+        <!-- Password -->
         <div class="mb-4">
-          <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            [(ngModel)]="user.password"
-            class="form-control"
-            placeholder="Enter your password"
-            required
-          />
+          <label>Password</label>
+          <input formControlName="password" type="password" class="form-control" />
+          <div *ngIf="(submitted || registerForm.get('password')?.touched) && registerForm.get('password')?.errors?.['required']" class="text-danger">
+            Password is required.
+          </div>
+          <div *ngIf="(submitted || registerForm.get('password')?.touched) && registerForm.get('password')?.errors?.['weakPassword']" class="text-danger">
+            Password must include upper, lower, number, and special character (8+ characters).
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Register</button>
+
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active" ><p>Already have an account?</p></a>
+        <button type="submit" class="btn btn-primary w-100">
+          Register
+        </button>
       </form>
     </div>
   </div>

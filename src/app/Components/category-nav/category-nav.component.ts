@@ -20,7 +20,7 @@ activeCategory: string | null = null; // Track active category
     { name: 'Lips', types: ['lip_liner', 'lipstick'], image: 'Images/lips.avif'  },
     { name: 'Nails', types: ['nail_polish'], image: 'Images/nails.jpg'  }
   ];
-   ngOnInit() {
+  ngOnInit() {
     if (this.initialCategories.length > 0) {
       const matchingCategory = this.categories.find(cat => 
         cat.types.join() === this.initialCategories.join()

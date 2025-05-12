@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component,EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-reviews',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.css'
 })
@@ -12,6 +14,7 @@ export class ReviewsComponent {
   stars = [1, 2, 3, 4, 5];
   selectedRating = 0;
   comment = '';
+  constructor(private auth:AuthService  ){}
 
   @Output() ratingSubmitted = new EventEmitter<{rating: number, comment: string}>();
 
@@ -30,4 +33,8 @@ export class ReviewsComponent {
       this.comment = '';
     }
   }
+   isLoggedIn() {
+    return !!localStorage.getItem('userEmail');
+  }
+
 }
