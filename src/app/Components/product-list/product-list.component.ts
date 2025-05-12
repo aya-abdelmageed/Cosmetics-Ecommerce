@@ -4,6 +4,8 @@ import { ProductsService } from '../../../Services/product.service';
 import { Product } from '../../../models/product.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-product-list',
   imports:[CommonModule,FormsModule],
@@ -11,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+
   // Product data properties
   products: Product[] = [];
   filteredProducts: Product[] = [];
@@ -114,7 +117,7 @@ export class ProductListComponent implements OnInit {
   "water free"
   ];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService,private router: Router) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -238,8 +241,10 @@ export class ProductListComponent implements OnInit {
 
     return Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i);
   }
-
-  wishlist: Product[] = [];
+  goToProductDetails(product: any) {
+  this.router.navigate(['/product'], { state: { product } });
+}
+ wishlist: Product[] = [];
   toggleWishlist(product: Product) {
     const index = this.wishlist.findIndex(p => p.id === product.id);
     if (index > -1) {

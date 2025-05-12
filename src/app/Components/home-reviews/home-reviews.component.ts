@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { review } from '../../../models/review.modle';
-import { ReviewService } from '../../../Services/review.service';
+// import { reviews } from '../../../models/reviews.modle';
+// import { ReviewService } from '../../../Services/review.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/product.model';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { ProductsService } from '../../../Services/product.service';
+import { review } from '../../../models/review.model';
+import { ReviewsService } from '../../../Services/reviews.service';
 @Component({
   selector: 'app-home-reviews',
   imports: [SlickCarouselModule ,CommonModule],
@@ -19,7 +21,7 @@ export class HomeReviewsComponent {
   currentIndex = 0;
 
   constructor(
-    private reviewService: ReviewService,
+    private reviewService: ReviewsService,
     private productsService: ProductsService
   ) {}
 

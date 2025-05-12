@@ -1,0 +1,101 @@
+<!-- Product Detail Tabs -->
+<div class="product-details-container container d-flex mb-3">
+  <div class="me-4" (click)="getContent('details')"><p>DETAILS</p></div>
+  <div class="me-4" (click)="getContent('howToUse')"><p>HOW TO USE</p></div>
+  <div class="me-4" (click)="getContent('shippingAndReturn')"><p>SHIPPING & RETURN</p></div>
+  <div class="me-4" (click)="getContent('reviews')"><p>REVIEWS</p></div>
+</div>
+
+<hr>
+
+<!-- Content Section -->
+<div>
+  <div *ngIf="selectedTab === 'details'">
+    <p class="selected-tab">{{ productInfo.details }}</p>
+  </div>
+
+  <div *ngIf="selectedTab === 'howToUse'">
+    <p class="selected-tab">{{ productInfo.howToUse }}</p>
+  </div>
+
+  <div *ngIf="selectedTab === 'shippingAndReturn'">
+    <p class="selected-tab">{{ productInfo.shippingAndReturn }}</p>
+  </div>
+
+  <div *ngIf="selectedTab === 'reviews'" class="selected-tab-reviews">
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+
+    <div class="review-layout d-flex flex-wrap gap-4">
+      <!-- Overview Section -->
+      <div class="overview-section flex-grow-1" style="min-width: 300px;">
+        <h3>Overall Rating</h3>
+        <div class="rating-score d-flex align-items-center gap-2">
+          <span class="score h1">{{ averageRating.toFixed(1) }}</span>
+          <span class="stars">
+            <ng-container *ngFor="let star of getStars(averageRating)">
+              <i class="fa" [ngClass]="star"></i>
+            </ng-container>
+          </span>
+        </div>
+        <div *ngIf="reviews && reviews.length > 0">
+          <p>Based on {{ reviews.length }} ratings</p>
+        </div>
+
+        <div class="rating-distribution" *ngFor="let item of ratingBreakdown">
+          <div class="d-flex align-items-center gap-2">
+            <span>{{ item.stars }} ★</span>
+            <div class="bar-container flex-grow-1 bg-light" style="height: 8px;">
+                 <div class="bar-fill" [style.width.%]="item.percent"></div>
+            </div>
+            <span>{{ item.percent }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="comments-section flex-grow-2" style="min-width: 300px;">
+        <h4>Reviews</h4>
+        <div *ngIf="reviews.length === 0">No reviews yet. Be the first to review!</div>
+        <div *ngFor="let review of displayedReviews" class="review-item mb-3">
+          <p><strong>{{ review.username || 'Anonymous' }}</strong>
+          </p>
+          <div class="stars mb-1">
+            <ng-container *ngFor="let star of getStars(review.stars)">
+              <i class="fa" [ngClass]="star"></i>
+            </ng-container>
+          </div>
+          <p>{{ review.comment }}</p>
+          <hr>
+        </div>
+        <div *ngIf="reviews.length >= 3">
+            <button class="btn btn-dark" (click)="toggleShowAll()">
+            {{ showAll ? 'View Less Reviews' : 'View All Reviews' }}
+           </button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Related Products Section -->
+<div class="slider-container mt-5">
+  <h2 class="slider-title">Related Products</h2>
+  <div class="slider-wrapper position-relative">
+    <div class="slider d-flex overflow-auto" #slider>
+      <div *ngFor="let product of relatedProducts" class="slide me-3">
+        <img [src]="product.api_featured_image" [alt]="product.name" class="slider-image" (click)="goToProductDetails(product)">
+        <div class="slide-overlay text-center mt-2">
+          <h3>{{ product.name }}</h3>
+          <h5>{{ product.price_sign }} {{ product.price }}</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider Arrows -->
+    <button class="slider-arrow left-arrow position-absolute start-0 top-50 translate-middle-y" (click)="scrollLeft()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="slider-arrow right-arrow position-absolute end-0 top-50 translate-middle-y" (click)="scrollRight()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

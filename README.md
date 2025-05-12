@@ -9,13 +9,11 @@ Angular course assessment.
 - 🔍 Product search and filtering
 - 🛍️ Shopping cart functionality
 - ⭐ Product rating system
+- 🔒 Route protection using Angular Guards
 - 📱 Responsive design for all devices
 - 🚀 Fast and interactive UI with Angular
 - 💲 Payment Gateway Integration
 ![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)
-![Stripe](https://img.shields.io/badge/Stripe-008CDD?logo=stripe&logoColor=white)
-![Visa](https://img.shields.io/badge/Visa-1A1F71?logo=visa&logoColor=white)
-![Mastercard](https://img.shields.io/badge/Mastercard-EB001B?logo=mastercard&logoColor=white)
 
 ## Technologies Used
 
@@ -23,8 +21,9 @@ Angular course assessment.
 - TypeScript
 - RxJS for state management
 - Angular Material for UI components
-- Bootstrap for styling
+- Bootstrap & AOS for styling
 - JSON Server for mock API (optional)
+- Angular Guards for route protection
 
 ## Installation
 

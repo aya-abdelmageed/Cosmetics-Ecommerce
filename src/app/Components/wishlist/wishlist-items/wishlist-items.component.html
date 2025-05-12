@@ -1,0 +1,30 @@
+<div class="wishlist-grid container">
+    <a class="wishlist-item card border-0 text-decoration-none h-100"
+        href="" *ngFor="let item of wishItems$ | async">
+        <div class="wishlist-image card-img-top position-relative overflow-hidden">
+            <div class="position-relative">
+                <!--  -->
+                <img [src]="item.image_link"
+                    class="object-fit-cover w-100 h-100" [alt]="item.name"
+                    loading="lazy">
+            </div>
+            <div class="remove-from-wishlist position-absolute top-0 end-0 p-2"><svg height="36" viewBox="0 0 36 36"
+                    width="36" xmlns="http://www.w3.org/2000/svg" class="icon icon-remove-from-wishlist">
+                    <path
+                        d="m9.14285714 10.5h-2.14285714v-1.5h6.75v-1c0-1.7475469 1.0024531-2.75 2.75-2.75h3.5c1.7475469 0 2.75 1.0024531 2.75 2.75v1h6.25v1.5h-2.1428571l-1.6847256 17.6896182c-.0977592 1.0264713-.9598749 1.8103818-1.9909909 1.8103818h-10.3628528c-1.031116 0-1.8932317-.7839105-1.9909909-1.8103818zm12.10714286-1.5v-1c0-.91911977-.3308802-1.25-1.25-1.25h-3.5c-.9191198 0-1.25.33088023-1.25 1.25v1zm-10.6003555 1.5 1.6711814 17.5474045c.0244398.2566179.2399687.4525955.4977477.4525955h10.3628528c.257779 0 .4733079-.1959776.4977477-.4525955l1.6711814-17.5474045zm3.3503555 3.5h1v10h-1zm7 0h1v10h-1zm-3.5 0h1v10h-1z">
+                    </path>
+                </svg></div>
+        </div>
+        <div class="wishlist-info card-body d-flex flex-column">
+            <p class="wishlist-info__brand-name text-muted mb-1">{{item.brand}}</p>
+            <p class="wishlist-info__product-name mb-2">{{item.name}}</p>
+            <div class="wishlist-info__price-info mb-3"><span class="wishlist-info__price">£{{item.price}}</span></div>
+        </div>
+        <div class="button-container button-container-promo-info mt-auto">
+            <div class="promo-info">
+                <p class="promo-info__message"></p>
+            </div>
+            <div class="add-to-bag btn btn-outline-dark w-100 custom-hover mb-0 ">Add to bag</div>
+        </div>
+    </a>
+</div>

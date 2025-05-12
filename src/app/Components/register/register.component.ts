@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../../Services/cart.service';
 import { HttpClient } from '@angular/common/http';
+import { switchMap } from 'rxjs';
+import { WishlistService } from '../../../Services/wishlist.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +25,8 @@ export class RegisterComponent implements OnInit {
     private auth: AuthService,
     private cartservice: CartService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private wishService : WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -80,10 +83,18 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login']);
         });
 
+        // this.auth.register(this.user).pipe(
+//     switchMap(() => this.cartservice.createCart(this.user.email)),
+//     switchMap(() => this.wishService.createWishlist(this.user.email))
+
         this.cartservice.createCart(userData.email).subscribe(() => {
           console.log('Cart created successfully!');
+        });
+        this.wishService.createWishlist(userData.email).subscribe(() => {
+          console.log('wishService created successfully!');
         });
       }
     });
   }
 }
+
