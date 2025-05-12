@@ -281,4 +281,17 @@ export class ProductListComponent implements OnInit {
   goToProductDetails(product: any) {
   this.router.navigate(['/product'], { state: { product } });
 }
+ wishlist: Product[] = [];
+  toggleWishlist(product: Product) {
+    const index = this.wishlist.findIndex(p => p.id === product.id);
+    if (index > -1) {
+      this.wishlist.splice(index, 1);
+    } else {
+      this.wishlist.push(product);
+    }
+  }
+  
+  isInWishlist(product: Product): boolean {
+    return this.wishlist.some(p => p.id === product.id);
+  }
 }

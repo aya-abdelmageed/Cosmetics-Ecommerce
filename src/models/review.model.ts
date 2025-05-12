@@ -4,5 +4,7 @@ export interface review{
       user_id: string,
       username: string,
       comment: string,
-      stars: number
+      stars: number,
+      product_name: string;
+
 }

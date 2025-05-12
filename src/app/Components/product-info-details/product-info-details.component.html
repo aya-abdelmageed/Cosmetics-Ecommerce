@@ -82,7 +82,7 @@
   <div class="slider-wrapper position-relative">
     <div class="slider d-flex overflow-auto" #slider>
       <div *ngFor="let product of relatedProducts" class="slide me-3">
-        <img [src]="product.image_link" [alt]="product.name" class="slider-image" (click)="goToProductDetails(product)">
+        <img [src]="product.api_featured_image" [alt]="product.name" class="slider-image" (click)="goToProductDetails(product)">
         <div class="slide-overlay text-center mt-2">
           <h3>{{ product.name }}</h3>
           <h5>{{ product.price_sign }} {{ product.price }}</h5>

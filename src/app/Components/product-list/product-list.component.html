@@ -75,9 +75,11 @@
 
         <!-- Product Image -->
         <div class="image-container">
- 
-          <button class="wishlist-btn" [class.active]="isInWishlist(product.id)" (click)="addtowish(product.id)" >
+          <!-- <button class="wishlist-btn" [class.active]="isInWishlist(product.id)" (click)="addtowish(product.id)>
             <span class="heart-icon">♥</span>
+          </button> -->
+          <button class="wishlist-btn" (click)="toggleWishlist(product)">
+            <i [ngClass]="isInWishlist(product) ? 'bi bi-heart-fill pink-text' : 'bi bi-heart'"></i>
           </button>
 
           <img
@@ -92,10 +94,10 @@
         <!-- Product Info -->
         <div class="product-info">
           <h3 class="brand">{{ product.brand }}</h3>
-          <h2 class="name">{{ product.name }}</h2>
-          <h3 class="name">{{ product.tag_list.join("-") }}</h3>
+          <h3 class="name">{{ product.name }}</h3>
+          <!-- <h3 class="name">{{ product.tag_list.join("-") }}</h3> -->
           <p class="price">
-            From {{ product.price_sign || "£" }}{{ product.price }}
+            Price {{ product.price_sign || "£" }}{{ product.price }}
           </p>
 
           <!-- Add to Bag Button -->

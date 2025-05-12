@@ -23,7 +23,7 @@
 
 .slider-arrow:hover {
     transform: scale(1.1);
-    background: #f8f8f8;
+    background: #D49696;
 }
 
 .slider-arrow i {
@@ -55,19 +55,18 @@
 }
 .slider-container {
     margin: 2rem 0;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
 .slider-title {
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-    font-size: 1.8rem;
+    margin-bottom: 60px;
+    color: #D49696;  
+    font-size: 40px;
 }
-
 .slider {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.3rem;
     overflow-x: auto;
     padding: 1rem 0;
     scroll-snap-type: x mandatory;
@@ -75,7 +74,7 @@
 
 .slide {
     min-width: 300px;
-    height: 200px;
+    height: 300px;
     scroll-snap-align: start;
     position: relative;
     border-radius: 12px;
