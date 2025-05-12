@@ -57161,7 +57161,12 @@
     {
       "id": "5451",
       "user": "test@gmail.com",
-      "products": []
+      "products": [
+        {
+          "productId": "1048",
+          "quantity": 3
+        }
+      ]
     }
   ],
   "wishlists": [
