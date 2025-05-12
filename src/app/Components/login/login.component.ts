@@ -18,9 +18,11 @@ export class SigninComponent {
   onLogin() {
     this.authService.login(this.email, this.password).subscribe(success => {
       if (success) {
+        console.log("from login 1")
         if (this.authService.isAdmin()) {
           this.router.navigate(['/']);
         } else {
+        console.log("from login 1")
           this.router.navigate(['/']);
         }
       } else {

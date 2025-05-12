@@ -51,6 +51,8 @@
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     width: 100%;
+    /* min-height: 400px !important;
+    max-width: 320px; */
 }
 
 .product-card {
@@ -59,6 +61,7 @@
     overflow: hidden;
     transition: all 0.3s ease;
     background: white;
+
 }
 
 .product-card:hover {
@@ -74,6 +77,15 @@
 
 .product-info {
     padding: 15px;
+    min-height: 230px !important;
+      display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-grow: 1;
+  margin-top: 20px;
+  /* line-height: 20px; */
+   line-height: 1.8;
+
 }
 
 .product-name {
@@ -99,16 +111,16 @@
     font-size: 12px;
     color: #888;
 }
-.wishlist-btn {
+/* .wishlist-btn {
 position: absolute;
     top: 10px;
     right: 10px;
     background: none;
     border: none;
     /* font-size: 1.2rem; */
-    color: #ccc;
+    /*color: #ccc;*/
     /* Default color */
-    cursor: pointer;
+    /*cursor: pointer;
     z-index: 10;
     padding: 5px;
     
@@ -122,22 +134,46 @@ position: absolute;
 
 .wishlist-btn.active {
     color: #ff4757;
-}
+} */
+
+
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0;
+    z-index: 10;
+  }
+  
+  .wishlist-btn:focus {
+    outline: none;
+  } 
+  .pink-text {
+    color: #e91e63;  
+  }
 .add-to-bag {
     width: 100%;
     padding: 10px;
-    background-color:#ff69b4;
+    background-color:#D49696;
     color: rgb(247, 243, 243);
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s;
+    /* bottom: 2px !important; */
+    margin-top: auto; /* it to the bottom*/
+    /* margin-bottom: 2px; */
+
 }
 
 .add-to-bag:hover {
-    background-color: #f5cfcf;
-    color: rgb(22, 22, 22);
+    background-color: #bf7e7e;
+    /* color: rgb(22, 22, 22); */
 }
 .heart-icon {
     font-size: 4rem;
@@ -206,9 +242,9 @@ position: absolute;
 }
 
 .pagination .active {
-    background: #ff4757;
+    background: #D49696;
     color: white;
-    border-color: #ff4757;
+    border-color:#D49696;
 }
 .product-container {
     display: flex;
@@ -287,7 +323,7 @@ position: absolute;
 .reset-btn {
     background: none;
     border: none;
-    color: #e83e8c;
+    color: #D49696;
     cursor: pointer;
     font-size: 0.9rem;
     padding: 0;
@@ -304,7 +340,7 @@ position: absolute;
 .apply-btn {
     width: 100%;
     padding: 0.75rem;
-    background-color: #e83e8c;
+    background-color: #D49696;
     color: white;
     border: none;
     border-radius: 4px;
@@ -314,7 +350,8 @@ position: absolute;
 }
 
 .apply-btn:hover {
-    background-color: #d42e7c;
+    background-color:#bf7e7e;
+    /* color: #333; */
 } 
 
 .results-count {

@@ -1,4 +1,4 @@
-.slider {
+/* .slider {
     position: relative;
     width: 100%;
     height: 80vh;
@@ -13,7 +13,7 @@
   /* .vediocontianer{
     padding: 
   } */
-  .dots {
+  /*.dots {
     position: absolute;
     bottom: 100px !important;
     left: 50%;
@@ -35,4 +35,11 @@
   .dots span.active {
     background-color: white;
   }
-  
+   */
+
+   .videocontainer,
+.categorycontainer,
+.reviewscontainer,
+.imagecontainer {
+  margin-bottom: 50px;
+}

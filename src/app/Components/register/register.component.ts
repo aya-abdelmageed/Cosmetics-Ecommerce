@@ -1,36 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../../Services/cart.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule,FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule ,RouterModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  user = {
-    name: '',
-    age: null,
-    email: '',
-    phone: '',
-    img: '',
-    password: ''
-  };
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
+  emailExists: boolean = false;
+  submitted: boolean = false;
 
-  constructor(private auth: AuthService, private cartservice : CartService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private cartservice: CartService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      age: [null, [this.ageValidator]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [this.phoneValidator]],
+      password: ['', [Validators.required, this.passwordStrengthValidator]]
+    });
+    // Reset emailExists if user changes email
+    this.registerForm.get('email')?.valueChanges.subscribe(() => {
+    this.emailExists = false;
+  });
+  }
+
+  ageValidator(control: AbstractControl) {
+    const value = control.value;
+    if (value === null || value === '') return null; // optional
+    return value >= 11 && value <= 80 ? null : { invalidAge: true };
+  }
+
+  phoneValidator(control: AbstractControl) {
+    const value = control.value;
+    if (!value) return null; // optional
+    const pattern = /^[0-9\-\+]{9,15}$/;
+    return pattern.test(value) ? null : { invalidPhone: true };
+  }
+
+  passwordStrengthValidator(control: AbstractControl) {
+    const value = control.value;
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return pattern.test(value) ? null : { weakPassword: true };
+  }
 
   onRegister() {
-    this.user.img = '/Images/profile-avatar.jpg';
-    this.auth.register(this.user).subscribe(() => {
-      alert('Registration successful!');
-      this.router.navigate(['/login']);
-    });
-    this.cartservice.createCart(this.user.email).subscribe(() => {
-      console.log('Cart created successfully!');
+    this.submitted = true;
+    if (this.registerForm.invalid) return;
+
+    const userData = {
+      ...this.registerForm.value,
+      img: '/Images/profile-avatar.jpg'
+    };
+
+    this.http.get<any[]>(`http://localhost:3000/users?email=${userData.email}`).subscribe(users => {
+      if (users.length > 0) {
+        this.emailExists = true;
+        return;
+      } else {
+        this.emailExists = false;
+
+        this.auth.register(userData).subscribe(() => {
+          alert('Registration successful!');
+          this.router.navigate(['/login']);
+        });
+
+        this.cartservice.createCart(userData.email).subscribe(() => {
+          console.log('Cart created successfully!');
+        });
+      }
     });
   }
 }

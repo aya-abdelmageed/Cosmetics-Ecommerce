@@ -22,3 +22,6 @@
 .navbar .nav-link i {
     font-size: 1.3rem;
 }
+.logout:hover{
+    cursor: pointer;
+}
