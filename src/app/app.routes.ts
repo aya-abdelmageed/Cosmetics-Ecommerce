@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -11,8 +11,8 @@ import { ShopComponent } from './Components/Shop/Shop.component';
 import { HomeComponent } from './Components/home/home.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
-import { BestProductsComponent } from './Components/best-products/best-products.component';
 import { ReviewsComponent } from './Components/reviews/reviews.component';
+import { BestProductsComponent } from './Components/best-products/best-products.component';
 
 
 export const routes: Routes = [
@@ -24,15 +24,17 @@ export const routes: Routes = [
    { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    // { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    { path: 'not-authorized', component: NotAuthorizedComponent },
-   { path: "product", component: ProductDetailsComponent},
+   {path: "product",component:ProductDetailsComponent},
+   {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    { path: 'Shop', component: ShopComponent },
-   // { path: '', component: HomeComponent }
+   { path: '', component: HomeComponent },
+     // { path: '', component: HomeComponent },
    // { path: 'Shop', component: ShopComponent },
    { path: 'BestSeller', component: BestProductsComponent },
-   { path: '', component: HomeComponent },
    {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    // {path: 'Dashboard', component:das , canActivate: [AdminGuard]}
 ];
-
+RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
+  
 
 

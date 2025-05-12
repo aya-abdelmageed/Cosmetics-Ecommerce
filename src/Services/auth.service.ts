@@ -56,7 +56,7 @@ export class AuthService {
   isAdmin(): boolean {
     return localStorage.getItem('userEmail') === this.adminEmail;
   }  
-
+  
   
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
