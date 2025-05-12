@@ -12,19 +12,29 @@ import { HomeComponent } from './Components/home/home.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { ReviewsComponent } from './Components/reviews/reviews.component';
+import { BestProductsComponent } from './Components/best-products/best-products.component';
+
+
 export const routes: Routes = [
    //{ path: '', component: HeaderComponent },
    { path: 'login', component: SigninComponent },
    { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard]},
+   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
    { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
+   // { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    { path: 'not-authorized', component: NotAuthorizedComponent },
    {path: "product",component:ProductDetailsComponent},
    {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    { path: 'Shop', component: ShopComponent },
-   { path: '', component: HomeComponent }
-   
+   { path: '', component: HomeComponent },
+     // { path: '', component: HomeComponent },
+   // { path: 'Shop', component: ShopComponent },
+   { path: 'BestSeller', component: BestProductsComponent },
+   {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
+   // {path: 'Dashboard', component:das , canActivate: [AdminGuard]}
 ];
 RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   
+
+
