@@ -3,6 +3,7 @@ import { SigninComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { CartComponent } from './Components/cart/cart.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { AuthGuard } from '../Guard/guards/auth.guard';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { AdminGuard } from '../Guard/guards/admin.guard';
@@ -13,10 +14,10 @@ export const routes: Routes = [
     { path: 'login', component: SigninComponent },
     { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+   { path: 'checkout', component: CheckoutComponent},
    { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    { path: 'not-authorized', component: NotAuthorizedComponent }
 
-  
-    
+
+
   ];
-  
