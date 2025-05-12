@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { Review } from '../../../models/review.modle';
+import { review } from '../../../models/review.modle';
 import { ReviewService } from '../../../Services/review.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/product.model';
@@ -13,8 +13,8 @@ templateUrl: './home-reviews.component.html',
   styleUrl: './home-reviews.component.css'
 })
 export class HomeReviewsComponent {
-  allReviews: Review[] = [];
-  currentBatch: Review[] = [];
+  allReviews: review[] = [];
+  currentBatch: review[] = [];
   batchSize = 3;
   currentIndex = 0;
 

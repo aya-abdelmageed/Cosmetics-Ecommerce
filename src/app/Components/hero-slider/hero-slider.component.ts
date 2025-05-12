@@ -1,6 +1,4 @@
 import { AfterViewInit, Component } from '@angular/core';
-//import{Swiper}
-//import Swiper from './../../../../node_modules/swiper/swiper.d';
 import Swiper from 'swiper';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 Swiper.use([Autoplay, Pagination, Navigation]);
