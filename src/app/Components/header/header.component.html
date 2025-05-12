@@ -75,7 +75,9 @@
             routerLink="/wishlist"
             routerLinkActive="active"
             class="nav-link px-2 py-2">
-            <i class="bi bi-heart"></i>
+            <i class="bi bi-heart">
+              <span *ngIf="wishItemsCount > 0">{{wishItemsCount}}</span>
+            </i>
           </a>
         </li>
         <!-- Cart icon for users -->
@@ -84,7 +86,8 @@
             routerLink="/cart"
             routerLinkActive="active"
             class="nav-link px-2 py-2">
-            <i class="bi bi-cart">{{cartItemsCount}}</i>
+            <i class="bi bi-cart">
+              <span *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span></i>
           </a>
         </li>
         <!-- Login/Register for guests -->
