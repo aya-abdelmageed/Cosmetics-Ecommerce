@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body class="mx-lg-4">
+    <div class="videocontainer" data-aos="fade-up" data-aos-delay="100">
+        <app-hero-slider></app-hero-slider>
+      </div>
+      
+      <div class="categorycontainer" data-aos="fade-left" data-aos-delay="200">
+        <div *ngIf="!router.url.includes('/Shop')">
+          <app-category-slider (categorySelected)="onCategorySelected($event)"></app-category-slider>
+        </div>
+      </div>
+      <div class="bestproducts " data-aos="fade-up" data-aos-delay="500">
+          <app-best-products></app-best-products>
+      </div>
+      
+      
+      <div class="imagecontainer" data-aos="fade-down" data-aos-delay="400">
+        <app-home-image></app-home-image>
+      </div>
+      
+      <div class="reviewscontainer" data-aos="fade-right" data-aos-delay="300">
+        <app-home-reviews></app-home-reviews>
+      </div>
+      
+</body>
+
+</html>

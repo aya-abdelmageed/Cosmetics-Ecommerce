@@ -34,13 +34,21 @@
         </li>
         <li class="nav-item">
           <a
-            routerLink="/shop"
+            routerLink="/Shop"
             routerLinkActive="active"
             class="nav-link px-3 px-md-4 py-2 py-md-3">
             Shop
           </a>
         </li>
-           <!-- Admin links -->
+        <li class="nav-item" *ngIf="!isAdmin()">
+          <a
+            routerLink="/BestSeller"
+            routerLinkActive="active"
+            class="nav-link px-3 px-md-4 py-2 py-md-3">
+            Best seller
+          </a>
+        </li>
+          <!-- Admin links -->
            <li class="nav-item" *ngIf="isAdmin()">
             <a
               routerLink="/admin/dashboard"
@@ -49,22 +57,22 @@
               DASHBOARD
             </a>
           </li>
-          <li class="nav-item" *ngIf="isAdmin()">
+          <!-- <li class="nav-item" *ngIf="isAdmin()">
             <a
               routerLink="/admin/add-product"
               routerLinkActive="active"
               class="nav-link px-3 px-md-4 py-2 py-md-3">
               ADD PRODUCT
             </a>
-          </li>
-          <li class="nav-item" *ngIf="isAdmin()">
+          </li> -->
+          <!-- <li class="nav-item" *ngIf="isAdmin()">
             <a
               routerLink="/admin/manage-products"
               routerLinkActive="active"
               class="nav-link px-3 px-md-4 py-2 py-md-3">
               MANAGE PRODUCTS
             </a>
-          </li>
+          </li> -->
       </ul>
 
       <!-- Icons, auth and admin on the right -->
@@ -84,7 +92,7 @@
             routerLink="/cart"
             routerLinkActive="active"
             class="nav-link px-2 py-2">
-            <i class="bi bi-cart"></i>
+            <i class="bi bi-cart">{{cartItemsCount}}</i>
           </a>
         </li>
         <!-- Login/Register for guests -->
@@ -105,7 +113,7 @@
           </a>
         </li>
         <!-- Logout for logged-in users -->
-        <li class="nav-item ms-2" *ngIf="isLoggedIn()">
+        <li class="nav-item ms-2 logout" *ngIf="isLoggedIn()">
           <a
             (click)="logout()"
             class="nav-link px-3 px-md-4 py-2 py-md-3">

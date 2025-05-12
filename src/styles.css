@@ -5,3 +5,22 @@
     /* color: #D49696 !important; */
     /* color: #1d1d35; */
 /* }  */
+/* *{
+    
+background-color: #fff4f4 !important;
+background-color: #ffeaea;
+color: #D49696 !important;
+color: #1d1d35;
+    background-color:#bf7e7e;
+
+} */
+
+.custom-hover:hover {
+  background-color: #D49696 !important;  /* Your custom hover background */
+  color: #fff !important;                /* Optional: custom text color */
+  border-color: #D49696 !important;      /* Match the border */
+}
+
+.custom-hover{
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

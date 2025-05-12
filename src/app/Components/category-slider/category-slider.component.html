@@ -1,0 +1,23 @@
+<div class="slider-container">
+  <h2 class="slider-title">Category</h2>
+  <div class="slider-wrapper">
+
+    <button class="slider-arrow left-arrow" (click)="scrollLeft()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <div class="slider" #slider>
+      <div *ngFor="let category of sliderCategories" class="slide" [class.active]="activeCategory === category.name"
+        (click)="selectCategory(category.types, category.name)">
+        <img [src]="category.image" [alt]="category.name" class="slider-image">
+        <div class="slide-overlay">
+          <h3>{{category.name}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <button class="slider-arrow right-arrow" (click)="scrollRight()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

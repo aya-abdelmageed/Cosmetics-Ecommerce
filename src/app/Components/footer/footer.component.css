@@ -1,7 +1,7 @@
 footer {
     background: #fff4f4 !important;
+    position: sticky !important;
     bottom: 0px !important;
-    position: relative;
 
 }
 

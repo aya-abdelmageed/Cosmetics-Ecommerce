@@ -1,0 +1,6 @@
+<app-categorynav 
+  [initialCategories]="initialCategories"
+  (categorySelected)="productList.filterByCategory($event)">
+</app-categorynav>
+<app-product-list #productList></app-product-list>
+<router-outlet></router-outlet>  <!-- Essential for routing -->

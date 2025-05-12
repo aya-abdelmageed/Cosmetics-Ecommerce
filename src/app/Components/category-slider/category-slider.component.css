@@ -1,0 +1,125 @@
+/* Add these styles to your existing CSS */
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.slider-arrow {
+    position: absolute;
+    z-index: 10;
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+    transform: scale(1.1);
+    background: #D49696;
+}
+
+.slider-arrow i {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.left-arrow {
+    left: -20px;
+}
+
+.right-arrow {
+    right: -20px;
+}
+
+.slider {
+    scroll-behavior: smooth;
+    /* For smooth scrolling */
+}
+
+/* Hide scrollbar but keep functionality */
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.slider-container {
+    margin: 2rem 0;
+    padding: 1.5rem;
+}
+
+.slider-title {
+    text-align: center;
+    margin-bottom: 60px;
+    color: #D49696;  
+    font-size: 40px;
+}
+.slider {
+    display: flex;
+    gap: 1.3rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+}
+
+.slide {
+    min-width: 300px;
+    height: 300px;
+    scroll-snap-align: start;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.slide:hover {
+    transform: translateY(-5px);
+}
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+.slide:hover .slider-image {
+    filter: brightness(1);
+    transform: scale(1.05);
+}
+
+.slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding: 1.5rem 1rem;
+    color: white;
+}
+
+.slide-overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.slide.active {
+    border: 2px solid #333;
+    transform: translateY(-5px);
+}
+
+.slide.active .slider-image {
+    filter: brightness(1);
+} 
