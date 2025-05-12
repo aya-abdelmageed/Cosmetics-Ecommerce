@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, input, ViewChild } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ProductsService } from '../../../Services/product.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewsService } from '../../../Services/reviews.service';
 import { review } from '../../../models/review.model';
 @Component({
@@ -15,8 +15,11 @@ import { review } from '../../../models/review.model';
 export class ProductInfoDetailsComponent {
    @ViewChild('slider') slider!: ElementRef<HTMLElement>;
    errorMessage: string | undefined;
+  http: any;
 
-    constructor(private productService: ProductsService,private router: Router,private reviewService : ReviewsService){}
+    constructor(private productService: ProductsService,private router: Router,private reviewService : ReviewsService,private route: ActivatedRoute){  
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+}
     slideConfig = {
       slidesToShow: 4,
       slidesToScroll: 1,
@@ -39,6 +42,19 @@ export class ProductInfoDetailsComponent {
   ratingBreakdown: { stars: number; percent: number }[] = [];
   relatedProducts: any[] = [];
    ngOnInit() {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+   this.route.queryParams.subscribe(params => {
+    const stateProduct = history.state.product;
+
+    if (stateProduct) {
+      this.product = stateProduct;
+    } else if (params['product_id']) {
+      const id = params['product_id'];
+      this.http.get(`http://localhost:3000/products/${id}`).subscribe((data: any) => {
+        this.product = data;
+      });
+    }
+  });
     console.log(this.product);
     if (this.product?.brand) {
       console.log(this.product.brand)
@@ -81,7 +97,10 @@ calculateRatings() {
 }
  goToProductDetails(product: any) {
       console.log(product,"---")
-      this.router.navigate(['/product'], { state: { product } });
+this.router.navigate(['/product'], {
+  queryParams: { product_id: product.id },
+  state: { product }
+});
 }
   getContent(tab: string): void {
     this.selectedTab = tab;

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
@@ -55,6 +55,6 @@ export class AuthService {
   isAdmin(): boolean {
     return localStorage.getItem('userEmail') === this.adminEmail;
   }  
-
+  
 }
 
