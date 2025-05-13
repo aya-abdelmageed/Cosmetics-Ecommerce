@@ -57214,6 +57214,13 @@
       "username": "ebtihaaaal",
       "comment": "The color is too clear and nice smell.",
       "stars": 5
+    },
+    {
+      "id": "868a",
+      "product_id": "1045",
+      "username": "fayroz29",
+      "comment": "greate product for my skin woooow",
+      "stars": 5
     }
   ],
   "carts": [
@@ -57325,6 +57332,14 @@
         {
           "productId": "1045",
           "quantity": 1
+        },
+        {
+          "productId": "877",
+          "quantity": 8
+        },
+        {
+          "productId": "887",
+          "quantity": 2
         }
       ]
     }
@@ -57382,7 +57397,9 @@
         "1043",
         "1001",
         "1002",
-        "1004"
+        "1004",
+        "877",
+        "1042"
       ]
     }
   ]
