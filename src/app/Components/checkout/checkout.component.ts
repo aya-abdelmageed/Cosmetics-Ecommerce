@@ -16,7 +16,7 @@ declare const paypal: any;
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup = new FormGroup({});
-  total:BehaviorSubject<number>;
+  total: BehaviorSubject<number>;
   showPayPal = false;
 
 
@@ -40,48 +40,48 @@ export class CheckoutComponent implements OnInit {
     "Qalyub", "Abnub", "Manfalut", "Tanta", "Mansoura", "Mit Ghamr", "Kafr Saad"
   ];
 
-  constructor(private fb: FormBuilder, private router: Router, private cartservices:CartService) {
-  this.total = this.cartservices.cartTotal$
+  constructor(private fb: FormBuilder, private router: Router, private cartservices: CartService) {
+    this.total = this.cartservices.cartTotal$
   }
 
- ngOnInit(): void {
-  this.checkoutForm = this.fb.group({
-    firstName: [
-      '',
-      [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z\s]+$/)]
-    ],
-    lastName: [
-      '',
-      [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z\s]+$/)]
-    ],
-    street: [
-      '',
-      [Validators.required, Validators.minLength(5)]
-    ],
-    city: ['', Validators.required],
-    phone: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(/^01[0125][0-9]{8}$/) // Egyptian mobile format
-      ]
-    ],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.email,
-        Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-      ]
-    ],
-    paymentMethod: ['', Validators.required],
-    
-  });
-}
+  ngOnInit(): void {
+    this.checkoutForm = this.fb.group({
+      firstName: [
+        '',
+        [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z\s]+$/)]
+      ],
+      lastName: [
+        '',
+        [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z\s]+$/)]
+      ],
+      street: [
+        '',
+        [Validators.required, Validators.minLength(5)]
+      ],
+      city: ['', Validators.required],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^01[0125][0-9]{8}$/) // Egyptian mobile format
+        ]
+      ],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+        ]
+      ],
+      paymentMethod: ['', Validators.required],
+
+    });
+  }
 
 
 
-    ngAfterViewInit() {
+  ngAfterViewInit() {
     if (this.showPayPal) {
       this.renderPayPalButton();
     }
@@ -98,15 +98,20 @@ export class CheckoutComponent implements OnInit {
 
     if (method === 'cod') {
       this.showPayPal = false;
-      alert("Your order has been placed successfully. Please prepare cash on delivery.");
-      this.router.navigate(['/']);
+      this.cartservices.clearCart().subscribe(t => {
+        alert("Your order has been placed successfully. Please prepare cash on delivery.")
+        this.router.navigate(['/']);
+      }
+      )
+
+
     } else if (method === 'paypal') {
       this.showPayPal = true;
       setTimeout(() => this.renderPayPalButton(), 100); // Delay to ensure DOM is ready
     }
   }
 
-    renderPayPalButton() {
+  renderPayPalButton() {
     if (document.getElementById('paypal-button-container')?.children.length) return;
 
     const totalValue = this.total.getValue().toFixed(2);
@@ -120,14 +125,20 @@ export class CheckoutComponent implements OnInit {
           }]
         });
       },
-onApprove: (data: any, actions: any) => {
-  return actions.order.capture().then((details: any) => {
-    setTimeout(() => {
-      alert('Transaction completed by ' + details.payer.name.given_name + '!');
-      this.router.navigate(['/']);
-    }, 1000);
-  });
-}
+      onApprove: (data: any, actions: any) => {
+        return actions.order.capture().then((details: any) => {
+          this.cartservices.clearCart().subscribe(
+            t => {
+              setTimeout(() => {
+                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+
+                this.router.navigate(['/']);
+              }, 1000);
+            }
+          )
+
+        });
+      }
 
     }).render('#paypal-button-container');
   }

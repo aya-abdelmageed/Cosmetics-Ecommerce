@@ -76,7 +76,8 @@ export class BestProductsComponent {
     this.cartservice.addToCart(id).subscribe({
       next: (cart) => {
         if (cart) {
-          alert("Added to cart successfully");
+          //alert("Added to cart successfully");
+          console.log("Added to cart successfully");
         }
       },
       error: (err) => {

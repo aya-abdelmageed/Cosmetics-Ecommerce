@@ -134,7 +134,7 @@ export class ProductListComponent implements OnInit {
   addtobag(id:number):void{
     this.cartServices.addToCart(id).subscribe(cart => {
       if(cart)
-        alert("Added to cart Successfully")
+       console.log("Added to cart Successfully")
       else
         console.log("can't add to cart")
     }
@@ -147,7 +147,7 @@ export class ProductListComponent implements OnInit {
   addtowish(id:number):void{
     this.wishService.addToWishlist(id).subscribe(wish =>{
       if(wish){
-        alert("added successfully to your wishlist")
+        console.log("added successfully to your wishlist")
       }
       else
         console.log("error at adding to wishlist")
@@ -281,17 +281,5 @@ export class ProductListComponent implements OnInit {
   goToProductDetails(product: any) {
   this.router.navigate(['/product'], { state: { product } });
 }
-//  wishlist: number[] = [];
-//   toggleWishlist(product: Product) {
-//     const index = this.wishlist.findIndex(product);
-//     if (index > -1) {
-//       this.wishlist.splice(index, 1);
-//     } else {
-//       this.wishlist.push(product);
-//     }
-//   }
-  
-  // isInWishlist(product: Product): boolean {
-  //   return this.wishlist.some(p => p.id === product.id);
-  // }
+
 }

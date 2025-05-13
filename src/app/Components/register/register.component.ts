@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../../Services/cart.service';
 import { HttpClient } from '@angular/common/http';
-import { switchMap } from 'rxjs';
 import { WishlistService } from '../../../Services/wishlist.service';
 
 @Component({
@@ -79,14 +78,9 @@ export class RegisterComponent implements OnInit {
         this.emailExists = false;
 
         this.auth.register(userData).subscribe(() => {
-          alert('Registration successful!');
+          //alert('Registration successful!');
           this.router.navigate(['/login']);
         });
-
-        // this.auth.register(this.user).pipe(
-//     switchMap(() => this.cartservice.createCart(this.user.email)),
-//     switchMap(() => this.wishService.createWishlist(this.user.email))
-
         this.cartservice.createCart(userData.email).subscribe(() => {
           console.log('Cart created successfully!');
         });
@@ -97,37 +91,4 @@ export class RegisterComponent implements OnInit {
     });
   }
 }
-/*
-onRegister() {
-    this.user.img = '/Images/profile-avatar.jpg';
-    
-    // First register the user
-    this.auth.register(this.user).pipe(
-      // After successful registration, create cart and wishlist in parallel
-      switchMap(() => forkJoin([
-        this.cartservice.createCart(this.user.email).pipe(
-          catchError(err => {
-            console.error('Error creating cart:', err);
-            return of(null); // Continue even if cart creation fails
-          })
-        ),
-        this.wishService.createWishlist(this.user.email).pipe(
-          catchError(err => {
-            console.error('Error creating wishlist:', err);
-            return of(null); // Continue even if wishlist creation fails
-          })
-        )
-      ]))
-    ).subscribe({
-      next: () => {
-        alert('Registration successful!');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error('Registration failed:', err);
-        alert('Registration failed. Please try again.');
-      }
-    });
-  }
-*/
 

@@ -18,29 +18,15 @@ export const routes: Routes = [
    { path: 'login', component: SigninComponent },
    { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-<<<<<<< HEAD
    { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
-=======
    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
    // { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
->>>>>>> c1e71d6ab80e04e2299906667b8bc1bb4f40e723
    { path: 'not-authorized', component: NotAuthorizedComponent },
-   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
    {path: "product",component:ProductDetailsComponent},
-   {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    { path: 'Shop', component: ShopComponent },
    { path: '', component: HomeComponent },
    { path: 'BestSeller', component: BestProductsComponent },
    {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    // {path: 'Dashboard', component:das , canActivate: [AdminGuard]}
 ];
-<<<<<<< HEAD
-RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
-=======
 // RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
-  
->>>>>>> c1e71d6ab80e04e2299906667b8bc1bb4f40e723
-
-
-
-//>>>>>>> 1d5d5cc07f2fcca1be9e45b1ac8b61145a8599ff

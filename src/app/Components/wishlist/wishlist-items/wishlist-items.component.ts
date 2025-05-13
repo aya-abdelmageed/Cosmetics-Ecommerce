@@ -32,12 +32,12 @@ export class WishlistItemsComponent {
       })
     ).subscribe({
       next: () => {
-        alert("Added to cart and removed from wishlist successfully");
+        //alert("Added to cart and removed from wishlist successfully");
         // No need to manually update - service handles it through updateWishItems()
       },
       error: (err) => {
         console.error("Operation failed:", err);
-        alert(err.message || "Operation failed");
+        //alert(err.message || "Operation failed");
       }
     });
   }
@@ -46,11 +46,11 @@ export class WishlistItemsComponent {
     this.wishlistService.removeFromWishlist(id).subscribe({
       next: (updatedwishlist) => {
       console.log('Updated wishlist:', updatedwishlist);
-        alert("Removed from wishlist successfully");
+        //alert("Removed from wishlist successfully");
       },
       error: (err) => {
         console.error("Couldn't remove item:", err);
-        alert("Failed to remove from wishlist");
+        //alert("Failed to remove from wishlist");
       }
     });
   }

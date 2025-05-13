@@ -38,7 +38,9 @@ export class ProductDetailsComponent {
   addtobag(id:number):void{
     this.cartService.addToCart(id).subscribe(cart => {
       if(cart){
-        alert("Added to cart Successfully")
+        //alert("Added to cart Successfully")
+        console.log("Added to cart Successfully")
+
       }
       else
         console.log("can't add to cart")
@@ -51,7 +53,8 @@ export class ProductDetailsComponent {
   addtowish(id:number):void{
     this.wishService.addToWishlist(id).subscribe(wish =>{
       if(wish){
-        alert("added successfully to your wishlist")
+        // alert("added successfully to your wishlist")
+        console.log("added successfully to your wishlist")
       }
       else
         console.log("error at adding to wishlist")

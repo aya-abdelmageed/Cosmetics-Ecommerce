@@ -36,7 +36,7 @@ export class CartItemComponent {
   remove(itemId : number){
     if(this.user){
       this.cartService.removeFromCart(itemId).subscribe(() =>{
-        alert("Item removed from cart");
+        //alert("Item removed from cart");
         console.log("removed");
       })
     }
