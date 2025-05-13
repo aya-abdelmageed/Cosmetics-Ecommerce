@@ -12,27 +12,24 @@ import { WishlistComponent } from './Components/wishlist/wishlist.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { ReviewsComponent } from './Components/reviews/reviews.component';
 import { BestProductsComponent } from './Components/best-products/best-products.component';
-
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
    { path: 'login', component: SigninComponent },
    { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
+   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
-   // { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
    { path: 'not-authorized', component: NotAuthorizedComponent },
-   {path: "product",component:ProductDetailsComponent},
+   { path: 'product', component: ProductDetailsComponent },
    { path: 'Shop', component: ShopComponent },
    { path: '', component: HomeComponent },
    { path: 'BestSeller', component: BestProductsComponent },
-   {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
-   // {path: 'Dashboard', component:das , canActivate: [AdminGuard]}
-   // { path: 'Shop', component: ShopComponent },
-   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard] }
+   { path: 'review', component: ReviewsComponent, canActivate: [AuthGuard] },
+   {
+      path: 'admin-dashboard',
+      component: AdminDashboardComponent,
+      canActivate: [AdminGuard],
+   },
 ];
-// RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
-
-  
-  
+RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' });

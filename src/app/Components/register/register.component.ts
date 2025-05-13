@@ -57,7 +57,8 @@ export class RegisterComponent implements OnInit {
 
   passwordStrengthValidator(control: AbstractControl) {
     const value = control.value;
-    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%-_#*?&]{8,}$/;
+
     return pattern.test(value) ? null : { weakPassword: true };
   }
 
@@ -81,6 +82,8 @@ export class RegisterComponent implements OnInit {
           //alert('Registration successful!');
           this.router.navigate(['/login']);
         });
+
+  
         this.cartservice.createCart(userData.email).subscribe(() => {
           console.log('Cart created successfully!');
         });
