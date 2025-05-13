@@ -1,0 +1,85 @@
+<div class="checkout-container">
+  <h2 class="checkout-title">Checkout</h2>
+  <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()" class="checkout-form">
+    <div class="checkout-grid">
+
+      <!-- Billing Section -->
+      <div class="form-section">
+        <h3>Billing Details</h3>
+
+        <!-- First Name -->
+        <input formControlName="firstName" placeholder="First Name *" />
+        <div *ngIf="checkoutForm.get('firstName')?.touched && checkoutForm.get('firstName')?.invalid">
+          <small *ngIf="checkoutForm.get('firstName')?.errors?.['required']">First name is required</small>
+          <small *ngIf="checkoutForm.get('firstName')?.errors?.['minlength']">Minimum 2 characters</small>
+          <small *ngIf="checkoutForm.get('firstName')?.errors?.['pattern']">Only letters allowed</small>
+        </div>
+
+        <!-- Last Name -->
+        <input formControlName="lastName" placeholder="Last Name *" />
+        <div *ngIf="checkoutForm.get('lastName')?.touched && checkoutForm.get('lastName')?.invalid">
+          <small *ngIf="checkoutForm.get('lastName')?.errors?.['required']">Last name is required</small>
+          <small *ngIf="checkoutForm.get('lastName')?.errors?.['minlength']">Minimum 2 characters</small>
+          <small *ngIf="checkoutForm.get('lastName')?.errors?.['pattern']">Only letters allowed</small>
+        </div>
+
+        <!-- Street -->
+        <input formControlName="street" placeholder="Street Address *" />
+        <div *ngIf="checkoutForm.get('street')?.touched && checkoutForm.get('street')?.invalid">
+          <small *ngIf="checkoutForm.get('street')?.errors?.['required']">Street address is required</small>
+          <small *ngIf="checkoutForm.get('street')?.errors?.['minlength']">Minimum 5 characters</small>
+        </div>
+
+        <!-- City -->
+        <select formControlName="city">
+          <option value="">Select City *</option>
+          <option *ngFor="let city of egyptCities" [value]="city">{{ city }}</option>
+        </select>
+        <div *ngIf="checkoutForm.get('city')?.touched && checkoutForm.get('city')?.invalid">
+          <small>City is required</small>
+        </div>
+
+        <!-- Phone -->
+        <input formControlName="phone" placeholder="Phone *" />
+        <div *ngIf="checkoutForm.get('phone')?.touched && checkoutForm.get('phone')?.invalid">
+          <small *ngIf="checkoutForm.get('phone')?.errors?.['required']">Phone number is required</small>
+          <small *ngIf="checkoutForm.get('phone')?.errors?.['pattern']">Invalid Egyptian phone format</small>
+        </div>
+
+        <!-- Email -->
+        <input formControlName="email" placeholder="Email Address *" />
+        <div *ngIf="checkoutForm.get('email')?.touched && checkoutForm.get('email')?.invalid">
+          <small *ngIf="checkoutForm.get('email')?.errors?.['required']">Email is required</small>
+          <small *ngIf="checkoutForm.get('email')?.errors?.['email']">Invalid email format</small>
+        </div>
+      </div>
+
+      <!-- Summary + Payment Section -->
+      <div class="form-section">
+
+        <div class="order-summary">
+          <h4>Order Summary</h4>
+          <p><strong>TOTAL:</strong> {{ total | async |currency}}</p>
+        </div>
+
+        <div class="payment-methods">
+          <h4>Payment Methods</h4>
+          <div *ngFor="let method of paymentMethods" class="payment-label">
+            <input type="radio" [value]="method.value" id="redio-input" formControlName="paymentMethod" />
+            <span class="method-label method-details">{{ method.label }}</span>
+          </div>
+          <div *ngIf="checkoutForm.get('paymentMethod')?.touched && checkoutForm.get('paymentMethod')?.invalid">
+            <small>Please select a payment method</small>
+          </div>
+        </div>
+
+        <!-- PayPal Button -->
+        <div class="paypal-button-container" *ngIf="showPayPal">
+          <div id="paypal-button-container"></div>
+        </div>
+
+        <button type="submit">PLACE AN ORDER</button>
+      </div>
+    </div>
+  </form>
+</div>

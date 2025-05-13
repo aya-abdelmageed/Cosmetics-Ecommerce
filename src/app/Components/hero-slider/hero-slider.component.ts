@@ -3,6 +3,10 @@ import Swiper from 'swiper';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 Swiper.use([Autoplay, Pagination, Navigation]);
 
+// import { AfterViewInit, Component } from '@angular/core';
+// import Swiper, { Autoplay, Pagination, Navigation } from 'swiper';
+// Swiper.use([Autoplay, Pagination, Navigation]);
+
 @Component({
   selector: 'app-hero-slider',
   templateUrl: './hero-slider.component.html',

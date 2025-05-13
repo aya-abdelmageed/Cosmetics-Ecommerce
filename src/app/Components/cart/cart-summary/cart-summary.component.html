@@ -29,9 +29,12 @@
       <div class="col-md-12"><a class="btn btn-outline-dark custom-hover rounded-2 p-3 w-100" routerLink="/Shop">Continue Shop</a>
       </div>
       <div class="col-md-12 mt-3">
-        <a class="btn btn-outline-dark custom-hover rounded-2 px-5 py-3 w-100">
-        Proceed to
-          checkout</a>
+        <a *ngIf="(totalPrice$ | async) !== 0"
+   routerLink="/checkout"
+   routerLinkActive="router-link-active"
+   class="btn btn-outline-dark custom-hover rounded-2 px-5 py-3 w-100">
+  Proceed to checkout
+</a>
       </div>
     </div>
   </div>
