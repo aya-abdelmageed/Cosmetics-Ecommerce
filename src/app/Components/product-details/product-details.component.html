@@ -45,11 +45,11 @@
             <button class="btn btn-outline-secondary" (click)="increaseQty()">+</button>
           </div>
           <a class="btn btn-light px-4">
-            <i class="fas fa-shopping-bag me-2"></i>    
+            <i class="fas fa-shopping-bag me-2 border-0" (click)="addtobag(product.id)"></i>    
           </a>
           <span>&nbsp;</span>
           <a class="btn btn-light px-4">
-            <i class="fas fa-heart me-2"></i>
+            <i class="fas fa-heart me-2 border-0" (click)="addtowish(product.id)"></i>
           </a>
         </div>
       <!-- Tags -->

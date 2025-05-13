@@ -12,15 +12,14 @@ import { CommonModule} from '@angular/common';
   styleUrl: './cart-item.component.css'
 })
 export class CartItemComponent {
-  constructor(private cartService : CartService) { }
+  constructor(private cartService : CartService) {
+    this.Items$ = this.cartService.cartItemsWithTotal$;
+   }
   
   @Input() user:string | null = null;
 
   Items$: any;
 
-  ngOnInit() {
-    this.Items$ = this.cartService.cartItemsWithTotal$;
-  }
   increment(itemId : number){
     if (this.user) {
       this.cartService.updateQuantity(itemId, 'increment').subscribe(() => 

@@ -5,13 +5,15 @@ Swiper.use([Autoplay, Pagination, Navigation]);
 
 @Component({
   selector: 'app-hero-slider',
-  imports: [],
-templateUrl: './hero-slider.component.html',
-  styleUrl: './hero-slider.component.css'
+  templateUrl: './hero-slider.component.html',
+  styleUrls: ['./hero-slider.component.css']
 })
 export class HeroSliderComponent implements AfterViewInit {
+
+  private swiperInstance!: Swiper;
+
   ngAfterViewInit(): void {
-    new Swiper('.slideshow', {
+    this.swiperInstance = new Swiper('.slideshow', {
       loop: true,
       autoplay: {
         delay: 3000,
@@ -22,6 +24,17 @@ export class HeroSliderComponent implements AfterViewInit {
         clickable: true,
       },
     });
-  }
 
+    const slideshowElement = document.querySelector('.slideshow');
+
+    if (slideshowElement) {
+      slideshowElement.addEventListener('mouseenter', () => {
+        this.swiperInstance.autoplay.stop();
+      });
+
+      slideshowElement.addEventListener('mouseleave', () => {
+        this.swiperInstance.autoplay.start();
+      });
+    }
+  }
 }

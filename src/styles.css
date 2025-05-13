@@ -14,7 +14,11 @@ color: #1d1d35;
     background-color:#bf7e7e;
 
 } */
-
+.navbar-brand>img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
 .custom-hover:hover {
   background-color: #D49696 !important;  /* Your custom hover background */
   color: #fff !important;                /* Optional: custom text color */

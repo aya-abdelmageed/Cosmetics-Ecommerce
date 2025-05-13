@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap, map, BehaviorSubject, forkJoin, of, take } from 'rxjs';
+import { Observable, switchMap, map, BehaviorSubject, forkJoin, of, take, tap } from 'rxjs';
 import { Cart, CartProduct } from '../models/cart.model'; // adjust path as needed
 import { ProductsService } from './product.service';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +28,17 @@ export class CartService {
   //make the cart total observable as a public observable stream.
   public cartTotal$ = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient, private auth:AuthService, private productService : ProductsService) {
+  constructor(private http: HttpClient, private router: Router, private auth:AuthService, private productService : ProductsService) {
     //this will keep track of the user email and i need to handle the 
     //unsubscribing of the observable stream
     //so i will ensure the subSCRIPTIONS HAPPENES only once and automatically completes
     
-    this.auth.auth$.pipe(take(1)).subscribe(email =>{
+    this.auth.auth$.subscribe(email =>{
       this.useremail = email;
+      this.cartItems.next([]); // Clear previous user's data
+      this.cartItemsWithTotal$.next([]);
+      this.cartTotal$.next(0);
+      this.cartItemCount$.next(0);
       
       if(this.useremail){
         this.getCartByUser().subscribe(cart => {
@@ -79,6 +84,11 @@ export class CartService {
     if(this.useremail){
        this.getCartByUser().subscribe((cart) => {
         if(cart){
+          if (cart.products.length === 0) {
+          this.cartItemsWithTotal$.next([]);
+          this.cartTotal$.next(0);
+        }
+        else{
           const productObservables = cart.products.map(i => 
             this.productService.getProductById(i.productId).pipe(
               map(product => ({
@@ -90,8 +100,10 @@ export class CartService {
           );
           forkJoin(productObservables).subscribe(products => {
             this.cartItemsWithTotal$.next(products);
+            const total = products.reduce((sum, p) => sum + p.total, 0);
+            this.cartTotal$.next(total);
           });
-        }
+        }}
       });
     }
   }
@@ -127,7 +139,10 @@ export class CartService {
   // Add product to cart
   addToCart(productId: number): Observable<Cart> {
     if(!this.useremail)
-      throw new Error('User email not found in local storage');
+    {
+      this.router.navigate(['/login']);
+      return of();
+    }
     return this.getCartByUser().pipe(
       switchMap(cart => {
         if (!cart) throw new Error('Cart not found');
@@ -161,10 +176,22 @@ export class CartService {
         cart.products = cart.products.filter(p => p.productId !== productId);
 
         return this.http.put<Cart>(`${this.cartUrl}/${cart.id}`, cart).pipe(
-          map(updatedCart => {
-            this.updateCartState(); // ✅ Update count, items, and total
-            return updatedCart;
-          })
+          tap(updatedCart => {
+          // First update the basic cart items
+          this.cartItems.next(updatedCart.products);
+          this.cartItemCount$.next(updatedCart.products.reduce((sum, p) => sum + p.quantity, 0));
+          
+          // Then handle the items with total
+          if (updatedCart.products.length === 0) {
+            // Explicitly handle empty cart case
+            this.cartItemsWithTotal$.next([]);
+            this.cartTotal$.next(0);
+          } else {
+            // Normal case with products
+            this.updateCartItemsWithTotal();
+          }
+        }),
+        map(updatedCart => updatedCart)
         );
       })
     );

@@ -7,6 +7,8 @@ import {review} from "../../../models/review.model"
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../Services/auth.service';
+import { CartService } from '../../../Services/cart.service';
+import { WishlistService } from '../../../Services/wishlist.service';
 @Component({
   selector: 'app-product-details',
   imports: [CommonModule, ProductInfoDetailsComponent, ReviewsComponent],
@@ -14,7 +16,7 @@ import { AuthService } from '../../../Services/auth.service';
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
-  constructor(private productDetails: ProductDetailsService,private http: HttpClient){}
+  constructor(private productDetails: ProductDetailsService,private http: HttpClient, private cartService : CartService, private wishService : WishlistService ){}
     quantity = 1
     product : any 
     productInfo: any;
@@ -31,7 +33,31 @@ export class ProductDetailsComponent {
   }
   apiUrl : string = 'http://localhost:3000/reviews'
 
-        
+  wishlist: number[] = [];
+  addtobag(id:number):void{
+    this.cartService.addToCart(id).subscribe(cart => {
+      if(cart){
+        alert("Added to cart Successfully")
+      }
+      else
+        console.log("can't add to cart")
+    }
+    );
+  }
+  isInWishlist(id:number){
+    return this.wishlist.includes(id);
+  }
+  addtowish(id:number):void{
+    this.wishService.addToWishlist(id).subscribe(wish =>{
+      if(wish){
+        alert("added successfully to your wishlist")
+      }
+      else
+        console.log("error at adding to wishlist")
+    }
+      
+    )
+  }
  handleRatingSubmission(event: { rating: number; comment: string }): void {
   const newReview: any = {
     product_id: this.product.id,

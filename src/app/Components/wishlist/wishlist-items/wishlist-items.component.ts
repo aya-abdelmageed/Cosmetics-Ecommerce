@@ -44,7 +44,8 @@ export class WishlistItemsComponent {
 
   removefromwish(id: number): void {
     this.wishlistService.removeFromWishlist(id).subscribe({
-      next: () => {
+      next: (updatedwishlist) => {
+      console.log('Updated wishlist:', updatedwishlist);
         alert("Removed from wishlist successfully");
       },
       error: (err) => {

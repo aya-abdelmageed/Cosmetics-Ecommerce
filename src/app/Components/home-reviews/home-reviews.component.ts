@@ -31,7 +31,7 @@ export class HomeReviewsComponent {
 
       this.productsService.getProducts().subscribe(products => {
         this.allReviews.forEach(review => {
-          this.productsService.getProductById(`${review.product_id}`).subscribe(product => {
+          this.productsService.getProductById(review.product_id).subscribe(product => {
             review['product_name'] = product ? product.name : 'Product Not Found';
             
           });

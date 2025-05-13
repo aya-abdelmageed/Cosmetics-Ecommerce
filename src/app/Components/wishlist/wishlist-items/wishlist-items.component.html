@@ -1,6 +1,5 @@
 <div class="wishlist-grid container">
-    <a class="wishlist-item card border-0 text-decoration-none h-100"
-        href="" *ngFor="let item of wishItems$ | async">
+    <div class="wishlist-item card border-0 text-decoration-none h-100" *ngFor="let item of wishItems$ | async">
         <div class="wishlist-image card-img-top position-relative overflow-hidden" style="height: 250px; width: auto; ">
             <div class="position-relative" style="height: 100%; width: 100%; object-fit: cover;">
                 <!--  -->
@@ -30,5 +29,5 @@
             </div>
             <div class="add-to-bag btn btn-outline-dark w-100 custom-hover mb-0 " (click)="addtobag(item.id)">Add to bag</div>
         </div>
-    </a>
+    </div>
 </div>

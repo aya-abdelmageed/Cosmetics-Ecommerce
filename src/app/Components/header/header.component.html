@@ -2,9 +2,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm mb-lg-4">
   <div class="container">
     <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="logo.png" alt="Logo" width="30" height="30" class="me-2">
-      <span><strong>Gil</strong><span class="text-danger">kan.</span></span>
+    <a class="navbar-brand d-flex align-items-center" href="">
+      <img src="Images/logo2.jpeg" alt="Logo" width="200" height="100" class="me-2">
+      <span><strong>Blu</strong><span class="text-danger">shy</span></span>
     </a>
 
     <!-- Toggler -->
@@ -83,9 +83,9 @@
             routerLink="/wishlist"
             routerLinkActive="active"
             class="nav-link px-2 py-2">
-            <i class="bi bi-heart">
+            <span class="bi bi-heart">
               <span *ngIf="wishItemsCount > 0">{{wishItemsCount}}</span>
-            </i>
+            </span>
           </a>
         </li>
         <!-- Cart icon for users -->
@@ -94,8 +94,8 @@
             routerLink="/cart"
             routerLinkActive="active"
             class="nav-link px-2 py-2">
-            <i class="bi bi-cart">
-              <span *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span></i>
+            <span class="bi bi-cart">
+              <span *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span></span>
           </a>
         </li>
         <!-- Login/Register for guests -->
