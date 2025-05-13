@@ -38,7 +38,7 @@ export class ProductDetailsComponent {
   addtobag(id:number):void{
     this.cartService.addToCart(id).subscribe(cart => {
       if(cart){
-        //alert("Added to cart Successfully")
+        alert("💖 Great pick! Your beauty essential is on its way to your bag.");
         console.log("Added to cart Successfully")
 
       }

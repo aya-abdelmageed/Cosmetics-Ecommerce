@@ -76,7 +76,7 @@ export class BestProductsComponent {
     this.cartservice.addToCart(id).subscribe({
       next: (cart) => {
         if (cart) {
-          //alert("Added to cart successfully");
+          alert("💖 Great pick! Your beauty essential is on its way to your bag.");
           console.log("Added to cart successfully");
         }
       },

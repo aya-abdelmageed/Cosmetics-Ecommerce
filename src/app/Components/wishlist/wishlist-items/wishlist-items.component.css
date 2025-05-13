@@ -49,6 +49,13 @@
     line-height: 1.4;
 }
 
+.add-to-bag{
+    background-color: #ffeaea;
+    border-color:  #D49696;
+    color:  #000000;
+
+}
+
 /* Responsive grid */
 @media (min-width: 320px) {
     .wishlist-grid {
