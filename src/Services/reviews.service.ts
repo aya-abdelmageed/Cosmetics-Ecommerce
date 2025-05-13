@@ -9,8 +9,8 @@ import { Product } from '../models/product.model';
 })
 export class ReviewsService {
 
-  private apiUrl = 'http://localhost:3000/reviews';
-  private productsUrl = 'http://localhost:3000/products'; 
+  private apiUrl = 'https://believed-quaint-frill.glitch.me/reviews';
+  private productsUrl = 'https://believed-quaint-frill.glitch.me/products'; 
 
   constructor(private http: HttpClient) { }
       getReviewByProductId(product_id: number): Observable<review[]> {

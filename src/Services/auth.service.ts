@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
  // private isLoggedIn = false;
-  private baseUrl = 'http://localhost:3000/users';
+  private baseUrl = 'https://believed-quaint-frill.glitch.me/users';
   private adminEmail = 'rehabmansi668@gmail.com';
   private currentUserEmail: string | null = null;
   auth$ = new BehaviorSubject<string | null>(null);

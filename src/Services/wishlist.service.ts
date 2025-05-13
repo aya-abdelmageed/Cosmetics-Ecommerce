@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class WishlistService {
-  private baseUrl = "http://localhost:3000/wishlists";
+  private baseUrl = "https://believed-quaint-frill.glitch.me/wishlists";
   private useremail: string | null = null;
 
   // Single source of truth for wishlist IDs
