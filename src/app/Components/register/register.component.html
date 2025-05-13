@@ -53,7 +53,7 @@
             Password is required.
           </div>
           <div *ngIf="(submitted || registerForm.get('password')?.touched) && registerForm.get('password')?.errors?.['weakPassword']" class="text-danger">
-            Password must include upper, lower, number, and special character (8+ characters).
+            Password must be at least 8 characters, and include both letters and numbers.
           </div>
         </div>
 
