@@ -16,7 +16,7 @@
     cursor: pointer;
     transition: color 0.3s ease;
   }
-  
+
   .product-details-container div:hover {
     color: pink;
   }
@@ -145,7 +145,7 @@
 
 .slide.active .slider-image {
     filter: brightness(1);
-} 
+}
 .selected-tab{
     text-align: center;
     font-family: cursive;
@@ -203,14 +203,14 @@
 .bar-container {
   height: 8px;
   background-color: #eee;
-  width: 20px;
+  width: 220px;
   border-radius: 4px;
   overflow: hidden;
 }
 
 .bar-fill {
   height: 100%;
-  background-color: #ffc107; 
+  background-color: #ffc107;
   display: block;
 }
 

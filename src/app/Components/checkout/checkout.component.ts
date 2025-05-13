@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CartService } from '../../../Services/cart.service';
+import { BehaviorSubject } from 'rxjs';
 declare const paypal: any;
 
 @Component({
@@ -14,7 +16,7 @@ declare const paypal: any;
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup = new FormGroup({});
-  total = 2370;
+  total:BehaviorSubject<number>;
   showPayPal = false;
 
 
@@ -38,7 +40,9 @@ export class CheckoutComponent implements OnInit {
     "Qalyub", "Abnub", "Manfalut", "Tanta", "Mansoura", "Mit Ghamr", "Kafr Saad"
   ];
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private cartservices:CartService) {
+  this.total = this.cartservices.cartTotal$
+  }
 
  ngOnInit(): void {
   this.checkoutForm = this.fb.group({
@@ -70,9 +74,11 @@ export class CheckoutComponent implements OnInit {
         Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
       ]
     ],
-    paymentMethod: ['', Validators.required]
+    paymentMethod: ['', Validators.required],
+    
   });
 }
+
 
 
     ngAfterViewInit() {
@@ -103,12 +109,13 @@ export class CheckoutComponent implements OnInit {
     renderPayPalButton() {
     if (document.getElementById('paypal-button-container')?.children.length) return;
 
+    const totalValue = this.total.getValue().toFixed(2);
     paypal.Buttons({
       createOrder: (data: any, actions: any) => {
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: this.total.toFixed(2)
+              value: totalValue
             }
           }]
         });

@@ -59,7 +59,7 @@
 
         <div class="order-summary">
           <h4>Order Summary</h4>
-          <p><strong>TOTAL:</strong> {{ total | currency }}</p>
+          <p><strong>TOTAL:</strong> {{ total | async |currency}}</p>
         </div>
 
         <div class="payment-methods">

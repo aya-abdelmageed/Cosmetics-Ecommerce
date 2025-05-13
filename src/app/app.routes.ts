@@ -21,31 +21,19 @@ export const routes: Routes = [
    { path: 'login', component: SigninComponent },
    { path: 'register', component: RegisterComponent },
    { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-<<<<<<< HEAD
-   { path: 'checkout', component: CheckoutComponent},
-   { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
-   { path: 'not-authorized', component: NotAuthorizedComponent }
-
-
-
-  ];
-=======
-   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
-   { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
-   // { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
+   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
    { path: 'not-authorized', component: NotAuthorizedComponent },
+   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
    {path: "product",component:ProductDetailsComponent},
    {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    { path: 'Shop', component: ShopComponent },
    { path: '', component: HomeComponent },
-     // { path: '', component: HomeComponent },
-   // { path: 'Shop', component: ShopComponent },
    { path: 'BestSeller', component: BestProductsComponent },
    {path: "review", component:ReviewsComponent, canActivate: [AuthGuard]},
    // {path: 'Dashboard', component:das , canActivate: [AdminGuard]}
 ];
 RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
-  
 
 
->>>>>>> 1d5d5cc07f2fcca1be9e45b1ac8b61145a8599ff
+
+//>>>>>>> 1d5d5cc07f2fcca1be9e45b1ac8b61145a8599ff
