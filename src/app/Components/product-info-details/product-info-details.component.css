@@ -16,7 +16,10 @@
     cursor: pointer;
     transition: color 0.3s ease;
   }
-  
+  .cursor-pointer {
+  cursor: pointer;
+}
+
   .product-details-container div:hover {
     color: pink;
   }
@@ -203,7 +206,7 @@
 .bar-container {
   height: 8px;
   background-color: #eee;
-  width: 20px;
+  width: 250px;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -221,4 +224,8 @@
   border-radius: 4px;
   margin-bottom: 1rem;
 }
-
+@media (max-width: 767.98px) {
+  .product-details-container {
+    flex-direction: column !important;
+  }
+}

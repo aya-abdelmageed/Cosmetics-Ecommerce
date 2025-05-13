@@ -6,7 +6,7 @@ import { ReviewsComponent } from "../reviews/reviews.component";
 import {review} from "../../../models/review.model"
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { AuthService } from '../../../Services/auth.service';
 @Component({
   selector: 'app-product-details',
   imports: [CommonModule, ProductInfoDetailsComponent, ReviewsComponent],
@@ -30,11 +30,12 @@ export class ProductDetailsComponent {
        this.productInfo = this.productDetails.getProductDetails();
   }
   apiUrl : string = 'http://localhost:3000/reviews'
+
+  userData:any = localStorage.getItem('userEmail')?.split('@');
  handleRatingSubmission(event: { rating: number; comment: string }): void {
   const newReview: any = {
     product_id: this.product.id,
-    user_id: 'user_123',
-    username: 'John Doe',
+    username: this.userData[0],
     comment: event.comment,
     stars: event.rating
   };
