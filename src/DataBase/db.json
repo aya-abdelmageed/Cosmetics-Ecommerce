@@ -57156,6 +57156,14 @@
       "username": "John Doe",
       "comment": "cvdsvxcdcx",
       "stars": 1
+    },
+    {
+      "id": "3ea7",
+      "product_id": "1048",
+      "user_id": "user_123",
+      "username": "John Doe",
+      "comment": "",
+      "stars": 3
     }
   ],
   "carts": [
