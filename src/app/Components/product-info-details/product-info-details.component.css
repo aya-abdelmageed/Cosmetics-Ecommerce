@@ -203,7 +203,7 @@
 .bar-container {
   height: 8px;
   background-color: #eee;
-  width: 20px;
+  width: 250px;
   border-radius: 4px;
   overflow: hidden;
 }
