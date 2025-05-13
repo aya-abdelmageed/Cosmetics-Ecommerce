@@ -75,11 +75,11 @@
 
         <!-- Product Image -->
         <div class="image-container">
-          <!-- <button class="wishlist-btn">
+          <!-- <button class="wishlist-btn" [class.active]="isInWishlist(product.id)" (click)="addtowish(product.id)>
             <span class="heart-icon">♥</span>
           </button> -->
-          <button class="wishlist-btn" (click)="toggleWishlist(product)">
-            <i [ngClass]="isInWishlist(product) ? 'bi bi-heart-fill pink-text' : 'bi bi-heart'"></i>
+          <button class="wishlist-btn" (click)="addtowish(product.id)">
+            <i [ngClass]="isInWishlist(product.id) ? 'bi bi-heart-fill pink-text' : 'bi bi-heart'"></i>
           </button>
 
           <img
@@ -101,7 +101,7 @@
           </p>
 
           <!-- Add to Bag Button -->
-          <button class="add-to-bag">Add to cart</button>
+          <button class="add-to-bag" (click)="addtobag(product.id)">Add to cart</button>
         </div>
       </div>
     </div>

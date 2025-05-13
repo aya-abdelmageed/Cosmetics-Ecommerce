@@ -12,32 +12,31 @@ import { CommonModule} from '@angular/common';
   styleUrl: './cart-item.component.css'
 })
 export class CartItemComponent {
-  constructor(private cartService : CartService) { }
+  constructor(private cartService : CartService) {
+    this.Items$ = this.cartService.cartItemsWithTotal$;
+   }
   
   @Input() user:string | null = null;
 
   Items$: any;
 
-  ngOnInit() {
-    this.Items$ = this.cartService.cartItemsWithTotal$;
-  }
-  increment(itemId : string){
+  increment(itemId : number){
     if (this.user) {
       this.cartService.updateQuantity(itemId, 'increment').subscribe(() => 
       console.log('incremented'));
     }
   }
 
-  decrement(itemId : string){
+  decrement(itemId : number){
     if (this.user) {
       this.cartService.updateQuantity(itemId, 'decrement').subscribe(() => 
       console.log('decremented'));
     }
   }
-  remove(itemId : string){
+  remove(itemId : number){
     if(this.user){
       this.cartService.removeFromCart(itemId).subscribe(() =>{
-        alert("Item removed from cart");
+        //alert("Item removed from cart");
         console.log("removed");
       })
     }

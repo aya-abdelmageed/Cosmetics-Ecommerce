@@ -1,0 +1,53 @@
+<!-- admin-dashboard.component.html -->
+<div class="dashboard-container">
+    <h1>Admin Dashboard</h1>
+    
+    <!-- Summary Cards -->
+    <div class="card-row">
+      <div class="stat-card">
+        <h3>Total Profit</h3>
+        <p class="value">${{dashboardData.totalProfit}}</p>
+      </div>
+      
+      <div class="stat-card">
+        <h3>Total Products</h3>
+        <p class="value">{{dashboardData.totalProducts}}</p>
+      </div>
+      
+      <div class="stat-card">
+        <h3>Top Selling</h3>
+        <p class="value">{{dashboardData.topSelling}}</p>
+      </div>
+      
+      <div class="stat-card">
+        <h3>Busiest Day</h3>
+        <p class="value">{{dashboardData.busiestDay}}</p>
+      </div>
+    </div>
+  
+    <!-- Charts Row 1 -->
+    <div class="chart-row">
+      <div class="chart-container">
+        <canvas id="profitPieChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="salesLineChart"></canvas>
+      </div>
+    </div>
+  
+    <!-- Charts Row 2 -->
+    <div class="chart-row">
+      <div class="chart-container">
+        <canvas id="brandBarChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <div class="info-box">
+          <h3>Most Profitable Product</h3>
+          <p>{{dashboardData.mostProfitable}}</p>
+          <div class="profit-indicator">
+            <span class="arrow">↑</span> 32% from last month
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

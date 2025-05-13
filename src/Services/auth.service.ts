@@ -46,6 +46,7 @@ export class AuthService {
   logout() {
     this.currentUserEmail = null;
     localStorage.removeItem('userEmail');
+    caches.delete('userEmail');
     this.auth$.next(null);
   }
 

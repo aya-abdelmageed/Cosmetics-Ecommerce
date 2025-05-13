@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../../Services/cart.service';
 import { HttpClient } from '@angular/common/http';
-import { switchMap } from 'rxjs';
 import { WishlistService } from '../../../Services/wishlist.service';
 
 @Component({
@@ -80,7 +79,7 @@ export class RegisterComponent implements OnInit {
         this.emailExists = false;
 
         this.auth.register(userData).subscribe(() => {
-          alert('Registration successful!');
+          //alert('Registration successful!');
           this.router.navigate(['/login']);
         });
 
@@ -89,7 +88,7 @@ export class RegisterComponent implements OnInit {
           console.log('Cart created successfully!');
         });
         this.wishService.createWishlist(userData.email).subscribe(() => {
-          console.log('wishService created successfully!');
+          console.log('wishlist created successfully!');
         });
       }
     });

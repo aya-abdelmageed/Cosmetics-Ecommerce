@@ -57,7 +57,7 @@
         <h4>Reviews</h4>
         <div *ngIf="reviews.length === 0">No reviews yet. Be the first to review!</div>
         <div *ngFor="let review of displayedReviews" class="review-item mb-3">
-          <p><strong>{{ review.username || 'Anonymous' }}</strong>
+          <p><strong>{{ review.username|| 'Anonymous' }}</strong>
           </p>
           <div class="stars mb-1">
             <ng-container *ngFor="let star of getStars(review.stars)">
