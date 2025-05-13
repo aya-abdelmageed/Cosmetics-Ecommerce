@@ -1,1 +1,15 @@
-<p>cart works!</p>
+<div class="container-fluid">
+    <app-header></app-header>
+    <section id="cart" class="my-lg-7 my-5">
+        <div class="container-lg">
+          <div class="row g-md-5">
+            <div class="col-md-8 pe-md-5">
+              <app-cart-item [user]="useremail"></app-cart-item>
+            </div>
+            <div class="col-md-4 mt-5">
+              <app-cart-summary></app-cart-summary>
+            </div>
+          </div>
+        </div>
+      </section>
+</div>

@@ -1,0 +1,20 @@
+
+<div class="rating-comment-container" *ngIf="isLoggedIn()">
+  <h2>RATE YOUR EXPERIENCE</h2>
+  
+  <div class="star-rating">
+    <span *ngFor="let star of stars; let i = index" 
+          (click)="selectStar(i + 1)"
+          [class.filled]="(i + 1) <= selectedRating">
+      ★
+    </span>
+  </div>
+  
+  <textarea [(ngModel)]="comment" 
+            placeholder="Your Comment (Optional)"
+            rows="4"></textarea>
+            
+  <button (click)="submitRating()" [disabled]="!selectedRating">
+    SUBMIT
+  </button>
+</div>

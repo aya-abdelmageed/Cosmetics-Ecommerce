@@ -1,0 +1,40 @@
+
+
+.bag-header__subtitle {
+  font-size: 1rem;
+  font-family: 'Druk Text CY Web', 'Trebuchet MS', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1d1d35;
+}
+
+.bag-header__title{
+   font-size: 42px;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 .3em;
+    line-height: 1.2;
+    color: #1d1d35 !important;
+    z-index: 1;
+}
+
+.bag-header__title span::after {
+  content: "";
+  position: absolute;
+  bottom: -.01em;
+  left: 0;
+  width: 100%;
+  height: 0.4em;
+  background-color: #ffd6d6; /* Soft pink underline */
+  z-index: -1;
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bag-header__title {
+    font-size: 2.5rem;
+  }
+}

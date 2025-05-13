@@ -1,0 +1,70 @@
+<div class="container my-5">
+    <div class="row g-5">
+      <!-- Left: Product Image & Gallery -->
+      <div class="col-md-6 d-flex flex-column align-items-center">
+        <img [src]="product.api_featured_image
+        " class="img-fluid border rounded mb-3 product-image" alt="Main Product Image" style="width: 100%; max-width: 500px; max-height: 450px; object-fit: contain;">
+      </div>
+  
+      <!-- Right: Product Info -->
+      <div class="col-md-6">
+        <h2>{{ product.name }}</h2>
+        <p class="text-muted">{{ product.category }} | {{ product.product_type }}</p>
+
+        <!-- Rating (if available) -->
+        <p *ngIf="product.rating !== null">
+          ⭐ {{ product.rating }} / 5
+        </p>
+        <p *ngIf="product.rating === null" class="text-muted">No reviews yet</p>
+  
+        <p>{{ product.description }}</p>
+        
+        <div class="mb-3">
+            <h4 class="text-danger fw-bold">
+                Brand: <span class="text-dark">{{ product.brand }}</span>
+            </h4>
+            <h4 class="text-danger fw-bold">
+              Price: <span class="text-dark">{{ product.price_sign }}{{ product.price }}</span>
+            </h4>
+          </div>
+
+      <!-- Color Swatches -->
+      <div class="mb-3 d-flex flex-wrap gap-2 align-items-center">
+        <span *ngFor="let color of product.product_colors"
+              [title]="color.colour_name"
+              class="rounded-circle border color-swatch"
+              [style.backgroundColor]="color.hex_value"
+              style="width: 30px; height: 30px; display: inline-block; cursor: pointer;">
+        </span>
+
+        <!-- Quantity & Add to Bag -->
+        <div class="d-flex align-items-center mb-3">
+          <div class="input-group me-3" style="width: 120px;">
+            <button class="btn btn-outline-secondary" (click)="decreaseQty()">−</button>
+            <input type="text" class="form-control text-center" [value]="quantity" readonly>
+            <button class="btn btn-outline-secondary" (click)="increaseQty()">+</button>
+          </div>
+          <a class="btn btn-light px-4">
+            <i class="fas fa-shopping-bag me-2 border-0" (click)="addtobag(product.id)"></i>    
+          </a>
+          <span>&nbsp;</span>
+          <a class="btn btn-light px-4">
+            <i class="fas fa-heart me-2 border-0" (click)="addtowish(product.id)"></i>
+          </a>
+        </div>
+      
+      </div>
+
+      <!-- Tags -->
+      <div class="mb-3">
+        <span *ngFor="let tag of product.tag_list" class="badge tag-badge me-2">
+          ✅ {{ tag }}
+        </span>
+      </div>
+      </div>
+    </div>
+  </div>
+  <app-product-info-details [product]="product" [productInfo]="productInfo"></app-product-info-details>
+  <app-reviews
+  (ratingSubmitted)="handleRatingSubmission($event)">
+  </app-reviews>

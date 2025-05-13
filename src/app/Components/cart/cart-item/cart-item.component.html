@@ -1,0 +1,64 @@
+<table class="table">
+  <thead class="align-items-center">
+    <tr>
+      <th scope="col" class="card-title text-uppercase">Product</th>
+      <th scope="col" class="card-title text-uppercase">Quantity</th>
+      <th scope="col" class="card-title text-uppercase">Price</th>
+      <th scope="col" class="card-title text-uppercase"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of Items$ | async">
+
+      <td scope="row" class="py-4">
+        <div class="cart-info d-flex align-items-center">
+          <div class="col-3 col-sm-2 col-md-3">
+            <div class="card-image">
+              <img [src]="item.api_featured_image" [alt]="item.name" class="img-fluid rounded">
+            </div>
+          </div>
+          <div class="col-9 col-sm-10 col-md-9 ps-2 ps-sm-3">
+            <div class="card-detail">
+              <h6 class="card-title mb-0 mb-sm-1">
+                <a href="#" class="text-decoration-none text-dark">{{item.name}}</a>
+              </h6>
+              <!-- Optional: Add additional product info that appears on larger screens -->
+              <div class="d-none d-sm-block">
+                <!-- Add any additional product info here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td class="py-4 align-middle">
+        <div class="input-group product-qty align-items-center pe-lg-5">
+          <span class="input-group-btn">
+            <button (click)="decrement(item.id)" class="quantity-left-minus p-1 p-lg-2 btn btn-light btn-number">
+              <span style="width:16; height:16; color: #D49696 !important;">-</span>
+            </button>
+          </span>
+          <input type="text" id="quantity" name="quantity" class="form-control input-number border text-center p-2 mx-1"
+            style="background-color: #D49696 !important; color:white;" [value]="item.quantity" min="1" max="100"
+            readonly>
+          <span class="input-group-btn">
+            <button (click)="increment(item.id)" class="quantity-right-plus p-1 p-lg-2 btn btn-light btn-number">
+              <span style="width:16; height:16; color: #D49696 !important;">+</span>
+            </button>
+          </span>
+        </div>
+      </td>
+      <td class="py-4 align-middle">
+        <div class="total-price">
+          <span class="fw-medium" style="color: #1d1d35 !important;">{{item.total}}</span>
+        </div>
+      </td>
+      <td class="py-4 align-middle">
+        <div class="cart-remove">
+          <button class="btn btn-light" (click)="remove(item.id)">
+            <span class="bi bi-trash3-fill" style="width:24; height:24; color: #D49696 !important;"></span>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

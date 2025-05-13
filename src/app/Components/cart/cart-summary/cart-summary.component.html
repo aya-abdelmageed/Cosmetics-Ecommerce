@@ -1,0 +1,40 @@
+<div class="cart-totals">
+    <h2 class="display-6 fw-semibold pb-4 mt-0">Cart Total</h2>
+    <div class="total-price pb-4">
+      <table cellspacing="0" class="table text-uppercase">
+        <tbody>
+          <!-- <tr class="subtotal pt-2 pb-2 border-top border-bottom">
+            <th>Subtotal</th>
+            <td data-title="Subtotal">
+              <span class="price-amount amount text-dark ps-5">
+                <bdi>
+                  <span class="price-currency-symbol">$</span>1,500.00
+                </bdi>
+              </span>
+            </td>
+          </tr> -->
+          <tr class="order-total pt-2 pb-2 border-bottom">
+            <th style="color: #1d1d35 !important;">Total</th>
+            <td data-title="Total">
+              <span class="price-amount amount text-dark ps-5">
+                <bdi>
+                  <span class="price-currency-symbol" style="color: #1d1d35 !important;">$</span>{{totalPrice$ | async }}</bdi>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="button-wrap row g-2">
+      <div class="col-md-12"><a class="btn btn-outline-dark custom-hover rounded-2 p-3 w-100" routerLink="/Shop">Continue Shop</a>
+      </div>
+      <div class="col-md-12 mt-3">
+        <a *ngIf="(totalPrice$ | async) !== 0"
+   routerLink="/checkout"
+   routerLinkActive="router-link-active"
+   class="btn btn-outline-dark custom-hover rounded-2 px-5 py-3 w-100">
+  Proceed to checkout
+</a>
+      </div>
+    </div>
+  </div>

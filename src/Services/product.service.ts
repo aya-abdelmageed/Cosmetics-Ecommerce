@@ -17,4 +17,17 @@ export class ProductsService {
      map(products => products.filter(p => Number(p.price) !== 0))
 );
   }
+
+  
+  getBestProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl).pipe(
+     map(products => products.filter(p => Number(p.rating) >=5))
+);
+  }
+
+  getProductById(id : number): Observable<Product>{
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
+
 }
+

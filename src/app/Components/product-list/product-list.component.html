@@ -75,8 +75,11 @@
 
         <!-- Product Image -->
         <div class="image-container">
-          <button class="wishlist-btn">
+          <!-- <button class="wishlist-btn" [class.active]="isInWishlist(product.id)" (click)="addtowish(product.id)>
             <span class="heart-icon">♥</span>
+          </button> -->
+          <button class="wishlist-btn" (click)="addtowish(product.id)">
+            <i [ngClass]="isInWishlist(product.id) ? 'bi bi-heart-fill pink-text' : 'bi bi-heart'"></i>
           </button>
 
           <img
@@ -84,21 +87,21 @@
             [alt]="product.name"
             class="product-image"
           />
-          <button class="quick-view-btn">
+          <button class="quick-view-btn" (click)="goToProductDetails(product)">
             <i class="fi fi-rs-eye"></i> Quick View
           </button>
         </div>
         <!-- Product Info -->
         <div class="product-info">
           <h3 class="brand">{{ product.brand }}</h3>
-          <h2 class="name">{{ product.name }}</h2>
-          <h3 class="name">{{ product.tag_list.join("-") }}</h3>
+          <h3 class="name">{{ product.name }}</h3>
+          <!-- <h3 class="name">{{ product.tag_list.join("-") }}</h3> -->
           <p class="price">
-            From {{ product.price_sign || "£" }}{{ product.price }}
+            Price {{ product.price_sign || "£" }}{{ product.price }}
           </p>
 
           <!-- Add to Bag Button -->
-          <button class="add-to-bag">Add to cart</button>
+          <button class="add-to-bag" (click)="addtobag(product.id)">Add to cart</button>
         </div>
       </div>
     </div>

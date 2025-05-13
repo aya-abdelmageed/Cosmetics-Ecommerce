@@ -1,0 +1,25 @@
+<div class="review-slider">
+    <div class="controls">
+      <button class="arrow-btn" (click)="prevBatch()">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+
+      <button class="arrow-btn" (click)="nextBatch()">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+    <h1 class="heder-text">Reviews</h1>
+    <div class="review-list">
+      <div *ngFor="let review of currentBatch" class="card review-card">
+        <div class="card-body">
+          <h4 class="card-title">{{ review.username }}</h4>
+          <p class="card-text">{{ review.comment }}</p>
+          <p class="card-text"><strong>Product Name:</strong> {{ review.product_name }}</p>
+          <div class="stars">
+            <span *ngFor="let s of [].constructor(review.stars)" class="fa fa-star checked"></span>
+            <span *ngFor="let s of [].constructor(5 - review.stars)" class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
