@@ -31,11 +31,11 @@ export class ProductDetailsComponent {
   }
   apiUrl : string = 'http://localhost:3000/reviews'
 
-        
+  userData:any = localStorage.getItem('userEmail')?.split('@');
  handleRatingSubmission(event: { rating: number; comment: string }): void {
   const newReview: any = {
     product_id: this.product.id,
-    Email: localStorage.getItem('userEmail'),
+    username: this.userData[0],
     comment: event.comment,
     stars: event.rating
   };

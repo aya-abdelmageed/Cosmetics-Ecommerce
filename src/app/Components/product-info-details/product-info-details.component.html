@@ -1,5 +1,5 @@
 <!-- Product Detail Tabs -->
-<div class="product-details-container container d-flex mb-3">
+<div class="product-details-container d-flex mb-3">
   <div class="me-4" (click)="getContent('details')"><p>DETAILS</p></div>
   <div class="me-4" (click)="getContent('howToUse')"><p>HOW TO USE</p></div>
   <div class="me-4" (click)="getContent('shippingAndReturn')"><p>SHIPPING & RETURN</p></div>
@@ -57,7 +57,7 @@
         <h4>Reviews</h4>
         <div *ngIf="reviews.length === 0">No reviews yet. Be the first to review!</div>
         <div *ngFor="let review of displayedReviews" class="review-item mb-3">
-          <p><strong>{{ review.Email || 'Anonymous' }}</strong>
+          <p><strong>{{ review.username || 'Anonymous' }}</strong>
           </p>
           <div class="stars mb-1">
             <ng-container *ngFor="let star of getStars(review.stars)">

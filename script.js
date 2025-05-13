@@ -41,7 +41,7 @@ function generateFakeReviews(products) {
         id: reviewId++,
         product_id: product.id,
         user_id: user.id,
-        username: user.name,
+        UserName: user.name,
         comment: getRandomItem(comments),
         stars: Math.floor(Math.random() * 5) + 1
       });
