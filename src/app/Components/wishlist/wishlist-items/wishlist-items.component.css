@@ -20,7 +20,7 @@
 
 /* Image container */
 .wishlist-image {
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     object-fit: cover;
 }
 

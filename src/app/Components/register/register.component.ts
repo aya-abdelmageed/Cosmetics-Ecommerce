@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
       img: '/Images/profile-avatar.jpg'
     };
 
-    this.http.get<any[]>(`http://localhost:3000/users?email=${userData.email}`).subscribe(users => {
+    this.http.get<any[]>(`https://believed-quaint-frill.glitch.me/users?email=${userData.email}`).subscribe(users => {
       if (users.length > 0) {
         this.emailExists = true;
         return;

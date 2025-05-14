@@ -31,7 +31,7 @@ export class ProductDetailsComponent {
        this.product = history.state.product;
        this.productInfo = this.productDetails.getProductDetails();
   }
-  apiUrl : string = 'http://localhost:3000/reviews'
+  apiUrl : string = 'https://believed-quaint-frill.glitch.me/reviews'
 
   userData:any = localStorage.getItem('userEmail')?.split('@');
   wishlist: number[] = [];

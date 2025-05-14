@@ -1,11 +1,12 @@
 .review-slider {
     position: relative;
     padding: 45px;
+    margin-bottom: 32px !important;
   }
   
   .review-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     justify-content: center;
     gap: 20px;
   }

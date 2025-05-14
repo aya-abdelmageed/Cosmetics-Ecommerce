@@ -92,7 +92,7 @@ export class ProductListComponent implements OnInit {
   "pure anada",
   "rejuva minerals",
   "revlon"
-  ];
+  ]; 
 
   tags = [
       "Canadian",

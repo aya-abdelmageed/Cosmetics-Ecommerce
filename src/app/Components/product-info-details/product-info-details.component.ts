@@ -50,7 +50,7 @@ export class ProductInfoDetailsComponent {
       this.product = stateProduct;
     } else if (params['product_id']) {
       const id = params['product_id'];
-      this.http.get(`http://localhost:3000/products/${id}`).subscribe((data: any) => {
+      this.http.get(`https://believed-quaint-frill.glitch.me/products/${id}`).subscribe((data: any) => {
         this.product = data;
       });
     }
