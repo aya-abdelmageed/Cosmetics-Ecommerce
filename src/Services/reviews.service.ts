@@ -5,7 +5,7 @@ import { review } from '../models/review.model';
 import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class ReviewsService {
 

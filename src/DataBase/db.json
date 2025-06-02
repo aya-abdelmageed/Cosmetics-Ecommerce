@@ -227,7 +227,7 @@
       "phone": "0123654789",
       "password": "AS123@df",
       "img": "/Images/profile-avatar.jpg"
-    } 
+    }
   ],
   "products": [
     {
@@ -57284,7 +57284,12 @@
     {
       "id": "f117",
       "user": "test33@gmail.com",
-      "products": []
+      "products": [
+        {
+          "productId": "1005",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "8960",

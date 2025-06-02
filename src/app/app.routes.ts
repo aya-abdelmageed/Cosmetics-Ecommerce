@@ -15,21 +15,21 @@ import { BestProductsComponent } from './Components/best-products/best-products.
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
-   { path: 'login', component: SigninComponent },
-   { path: 'register', component: RegisterComponent },
-   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
-   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
-   { path: 'not-authorized', component: NotAuthorizedComponent },
-   { path: 'product', component: ProductDetailsComponent },
-   { path: 'Shop', component: ShopComponent },
-   { path: '', component: HomeComponent },
-   { path: 'BestSeller', component: BestProductsComponent },
-   { path: 'review', component: ReviewsComponent, canActivate: [AuthGuard] },
+   { path: 'login', component: SigninComponent , title: 'Login' },
+   { path: 'register', component: RegisterComponent , title: 'Register'},
+   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] , title: 'Cart'},
+   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] , title: 'Checkout'},
+   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard], title: 'Wishlist' },
+   { path: 'not-authorized', component: NotAuthorizedComponent , title: 'not-authorized' },
+   { path: 'product', component: ProductDetailsComponent , title: 'Product Dtails'},
+   { path: 'Shop', component: ShopComponent , title: 'Shop' },
+   { path: '', component: HomeComponent , title: 'Home' },
+   { path: 'BestSeller', component: BestProductsComponent , title: 'BestSeller'},
+   { path: 'review', component: ReviewsComponent, canActivate: [AuthGuard] , title: 'Review'},
    {
       path: 'admin-dashboard',
       component: AdminDashboardComponent,
-      canActivate: [AdminGuard],
+      canActivate: [AdminGuard], title: 'Dashboard'
    },
 ];
 RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' });
