@@ -20,7 +20,7 @@
 
 /* Image container */
 .wishlist-image {
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     object-fit: cover;
 }
 
@@ -47,6 +47,13 @@
     margin: 0 0 0.65em;
     font-size: 1rem;
     line-height: 1.4;
+}
+
+.add-to-bag{
+    background-color: #ffeaea;
+    border-color:  #D49696;
+    color:  #000000;
+
 }
 
 /* Responsive grid */

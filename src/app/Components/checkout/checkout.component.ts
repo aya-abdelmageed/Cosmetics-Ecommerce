@@ -130,7 +130,7 @@ export class CheckoutComponent implements OnInit {
           this.cartservices.clearCart().subscribe(
             t => {
               setTimeout(() => {
-                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                alert('Transaction completed');
 
                 this.router.navigate(['/']);
               }, 1000);

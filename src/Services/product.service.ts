@@ -8,7 +8,7 @@ import { Product } from '../models/product.model'
   providedIn: 'root'
 })
 export class ProductsService {
-  private apiUrl = 'http://localhost:3000/products';
+  private apiUrl = 'https://believed-quaint-frill.glitch.me/products';
 
   constructor(private http: HttpClient) { }
 

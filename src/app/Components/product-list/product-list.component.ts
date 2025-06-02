@@ -92,7 +92,7 @@ export class ProductListComponent implements OnInit {
   "pure anada",
   "rejuva minerals",
   "revlon"
-  ];
+  ]; 
 
   tags = [
       "Canadian",
@@ -134,7 +134,10 @@ export class ProductListComponent implements OnInit {
   addtobag(id:number):void{
     this.cartServices.addToCart(id).subscribe(cart => {
       if(cart)
-       console.log("Added to cart Successfully")
+      {
+        alert("💖 Great pick! Your beauty essential is on its way to your bag.");
+      //  console.log("Added to cart Successfully")
+      }
       else
         console.log("can't add to cart")
     }

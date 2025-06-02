@@ -227,6 +227,15 @@
       "phone": "0123654789",
       "password": "AS123@df",
       "img": "/Images/profile-avatar.jpg"
+    },
+    {
+      "id": "a554",
+      "name": "Aya Abdelmageed",
+      "age": 22,
+      "email": "yoyo@gmail.com",
+      "phone": "01008953379",
+      "password": "aaa12345",
+      "img": "/Images/profile-avatar.jpg"
     }
   ],
   "products": [
@@ -57214,6 +57223,13 @@
       "username": "ebtihaaaal",
       "comment": "The color is too clear and nice smell.",
       "stars": 5
+    },
+    {
+      "id": "868a",
+      "product_id": "1045",
+      "username": "fayroz29",
+      "comment": "greate product for my skin woooow",
+      "stars": 5
     }
   ],
   "carts": [
@@ -57313,7 +57329,32 @@
     {
       "id": "8ec4",
       "user": "ebtihaaaal@gmail.com",
-      "products": []
+      "products": [
+        {
+          "productId": "992",
+          "quantity": 2
+        },
+        {
+          "productId": "1046",
+          "quantity": 1
+        },
+        {
+          "productId": "1045",
+          "quantity": 1
+        },
+        {
+          "productId": "1047",
+          "quantity": 1
+        },
+        {
+          "productId": "1048",
+          "quantity": 2
+        },
+        {
+          "productId": "1044",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "d3fc",
@@ -57330,6 +57371,14 @@
         {
           "productId": "1045",
           "quantity": 1
+        },
+        {
+          "productId": "877",
+          "quantity": 8
+        },
+        {
+          "productId": "887",
+          "quantity": 2
         }
       ]
     },
@@ -57347,6 +57396,20 @@
       "id": "0d18",
       "user": "nana111@gmail.com",
       "products": []
+    },
+    {
+      "id": "cf87",
+      "user": "yoyo@gmail.com",
+      "products": [
+        {
+          "productId": "993",
+          "quantity": 1
+        },
+        {
+          "productId": "1047",
+          "quantity": 1
+        }
+      ]
     }
   ],
   "wishlists": [
@@ -57391,7 +57454,8 @@
       "id": "a939",
       "user": "ebtihaaaal@gmail.com",
       "productIds": [
-        "1047"
+        "1047",
+        "993"
       ]
     },
     {
@@ -57402,7 +57466,9 @@
         "1043",
         "1001",
         "1002",
-        "1004"
+        "1004",
+        "877",
+        "1042"
       ]
     },
     {
@@ -57420,6 +57486,15 @@
       "user": "nana111@gmail.com",
       "productIds": [
         "991"
+      ]
+    },
+    {
+      "id": "7a7b",
+      "user": "yoyo@gmail.com",
+      "productIds": [
+        "1048",
+        "1047",
+        "993"
       ]
     }
   ]

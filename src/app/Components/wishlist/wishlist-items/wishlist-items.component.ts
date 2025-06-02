@@ -22,18 +22,10 @@ export class WishlistItemsComponent {
   }
 
   addtobag(id: number): void {
-    this.cartServices.addToCart(id).pipe(
-      switchMap(cart => {
-        if (!cart) {
-          throw new Error("Couldn't add to cart");
-        }
-        // Chain the removal after successful cart addition
-        return this.wishlistService.removeFromWishlist(id);
-      })
-    ).subscribe({
-      next: () => {
-        //alert("Added to cart and removed from wishlist successfully");
-        // No need to manually update - service handles it through updateWishItems()
+    this.cartServices.addToCart(id).subscribe({
+      next: (cart) => {
+        alert("💖 Great pick! Your beauty essential is on its way to your bag.");
+        console.log("Added to cart Successfully", cart);
       },
       error: (err) => {
         console.error("Operation failed:", err);
